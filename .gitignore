@@ -1,0 +1,15 @@
+**/.history/
+.history/
+.history/**
+node_modules/**
+node_modules/
+**/node_modules/
+.vscode-test/
+*.vsix
+*.old
+*.bak
+**/__bak/
+__bak/
+__bak/**
+*bak/
+*old/
