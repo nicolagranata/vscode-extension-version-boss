@@ -1,7 +1,15 @@
 # {app_name} Change Log
 
+> {development_sections_warning}
+
 ## [{app_version}]
-- [`Fix`] Updated dependencies for security reasons.
+- [`Development`] Optimized some parts of **{app_name}** Extension code;
+- [`Development`] Added function that generate **{app_name}** Extension badges in `README.md`.
+
+## [1.3.4]
+- [`Help`] Some corrections to inline help in Settings;
+- [`Fix`] Updated dependencies for security reasons;
+- [`Development`] Introduced `VSCode Extensions Manager` (fork of `VSCode Theme Master`), an external PHP tool only for extensions development to backup/clean/package/update dependencies/publish/make icons/manage extensions. 
 
 ## [1.3.1]
 - [`Feature`] Now is possible to step-up/down inline version string even with `^` leading char (e.g. `"^1.35.0"`, used to indicate minimum version requirements in `package.json`);

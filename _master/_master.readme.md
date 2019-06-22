@@ -1,16 +1,18 @@
+{badges}
+
 # {app_name} - v. {app_version}
 
 {app_description}
 
 ## Release Notes for version {app_version}
 
+> {development_sections_warning}
+
 {whats_new}
 
 See `Changelog` for previous versions.
 
----
-
-## Very Important Informations for Upgrade to `{app_name} v. 1.2.0` and above
+### Very Important Informations for Upgrade to `{app_name} v. 1.2.0` and above
 
 1. **`PLEASE UPDATE BOUNDARIES STRUCTURE IN YOUR SCRIPTS`**: from version `1.2.0` was changed structure of boundaries from `<!#(.+)#!>` to `<!#(.+)>` and `</#(.+)#/>` to `</#(.+)>` (e.g.: `<!#FV#!>1.2.3456-beta.3</#FV#/>` to `<!#FV>1.2.3456-beta.3</#FV>`. Even all others boundaries are changed in this pattern!);
 1. **`PLEASE UPDATE YOUR SETTINGS`**: from version `1.2.0` was removed `Version Update On Pattern Match Only First` and  changed rule of `Version Update On Pattern Match` from `false` / `true` to `False` / `True` / `Only First Occurrence` (default: `False`);

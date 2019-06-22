@@ -1,10 +1,18 @@
 <!-- RICORDATI: QUESTO FILE E' ASSEMBLATO DAL TUO SCRIPT - NON MODIFICARLO DA QUI -->
-<!-- 2019/06/14 16:21:30.859 -->
+<!-- 2019/06/22 16:16:25.171 -->
 
 # Version Boss Change Log
 
+> Note: [`Development`] sections in *Changelog* are addressed to the developer to remind him of any important changes that occurred during the writing of the code and do not always concern improvements made to the extension or to the theme.
+
+## [1.3.5]
+- [`Development`] Optimized some parts of **Version Boss** Extension code;
+- [`Development`] Added function that generate **Version Boss** Extension badges in `README.md`.
+
 ## [1.3.4]
-- [`Fix`] Updated dependencies for security reasons.
+- [`Help`] Some corrections to inline help in Settings;
+- [`Fix`] Updated dependencies for security reasons;
+- [`Development`] Introduced `VSCode Extensions Manager` (fork of `VSCode Theme Master`), an external PHP tool only for extensions development to backup/clean/package/update dependencies/publish/make icons/manage extensions. 
 
 ## [1.3.1]
 - [`Feature`] Now is possible to step-up/down inline version string even with `^` leading char (e.g. `"^1.35.0"`, used to indicate minimum version requirements in `package.json`);

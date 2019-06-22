@@ -3,7 +3,7 @@
     "displayName": "Version Boss",
     "icon": "_gfx/version-boss-icon.png",
     "description": "Versioning like a Boss - Semantic Versioner for Scripting Languages: Insert and Update Version, according to http://semver.org directives, Copyrights of file, Distribution License, and save-it using shortcuts.",
-    "version": "1.3.4",
+    "version": "1.3.5",
     "publisher": "nicola-granata",
     "license": "BSD-3-Clause-Attribution",
     "author": {
@@ -427,7 +427,7 @@
                 "versionBoss.settings.versionUseChannelsStrictMatch": {
                     "type": "boolean",
                     "default": false,
-                    "markdownDescription": "Enable the strict matching of channel part of semver string.\r\n\r\n- `true`: only part of semver string matching the string of channels availabes in *Version Boss » Settings » Set Channels List* is recognized and updated\r\n\r\n- `false`: any channel string in semver full pattern is recognized and fixed/updated (e.g. `<!#FV> 1.25.0-roadrunner.1 </#FV>` -> `<!#FV> 1.25.0-roadrunner.1 </#FV>`)"
+                    "markdownDescription": "Enable the strict matching of channel part of semver string.\r\n\r\n- `true`: only part of semver string matching the string of channels availabes in *Version Boss » Settings » Set Channels List* is recognized and updated\r\n\r\n- `false`: any channel string in semver full pattern is recognized and fixed/updated (e.g. `<!#FV> 1.25.0-roadrunner.1 </#FV>` -> `<!#FV> 1.25.0-alpha.1</#FV>`)"
                 },
                 "versionBoss.settings.versionUpdateOnPatternMatch": {
                     "type": "string",
@@ -775,10 +775,10 @@
         "test": "node ./node_modules/vscode/bin/test"
     },
     "devDependencies": {
+        "@types/mocha": "^5.2.7",
+        "@types/node": "^12.0.10",
+        "eslint": "^6.0.0",
         "typescript": "^3.5.2",
-        "vscode": "^1.1.34",
-        "eslint": "^5.16.0",
-        "@types/node": "^12.0.8",
-        "@types/mocha": "^5.2.7"
+        "vscode": "^1.1.34"
     }
 }

@@ -11,11 +11,11 @@
 * -------------------------------------------------------------------------------------------------------------------- *
 *            File Name     > <!#FN> extension.js </#FN>                                                                
 *            File Birth    > <!#FB> 2019/05/06 21:54:01.691 </#FB>                                                     *
-*            File Mod      > <!#FT> 2019/06/10 11:52:20.042 </#FT>                                                     *
+*            File Mod      > <!#FT> 2019/06/22 16:11:31.169 </#FT>                                                     *
 *            License       > <!#LT> Copyrighted Commercial Software </#LT>                                             
 *                            <!#LU> See License-Copyrighted-Commercial-Software.txt </#LU>                             
 *                            <!#LD> This file may not be redistributed in whole or significant part. </#LD>            
-*            File Version  > <!#FV> 1.2.4 </#FV>                                                                 
+*            File Version  > <!#FV> 1.2.5 </#FV>                                                                 
 *                                                                                                                      *
 ******************************************* VSCode Extension: Version Boss *********************************************
 </#CR>
@@ -41,6 +41,15 @@ var glob_env = {
 	"master_files": {
 		"readme": "_master.readme.md",
 		"changelog": "_master.changelog.md"
+	},
+	"messages": {
+		"development_sections_warning": "Note: [`Development`] sections in *Changelog* are addressed to the developer to remind him of any important changes that occurred during the writing of the code and do not always concern improvements made to the extension or to the theme.",
+	},
+	"vscode_marketplace_badges": {
+		"url": "https://vsmarketplacebadge.apphb.com/",
+		"badges": [ "Version", "Downloads", "Installs", "Rating" ],
+		// badge mode puo' essere short o vuoto: qualsiasi valore diverso da short, restituisce "vuoto"
+		"mode": "short",
 	}
 };
 
@@ -330,16 +339,38 @@ function read_extension_file(fs, file_full_path) {
 	return str;
 }
 
+function fv_get_badges(extension_full_id, eol) {
+	var badges_str = "";
+	var badge_mode = glob_env[ "vscode_marketplace_badges" ][ "mode" ];
+	if (badge_mode != "short") {
+		badge_mode = "";
+	} else {
+		badge_mode = "-" + badge_mode;
+	}
+	var badges_url = glob_env[ "vscode_marketplace_badges" ][ "url" ];
+	var badges_ra = glob_env[ "vscode_marketplace_badges" ][ "badges" ];
+	var badge_full_url = "";
+	var badge_name = "";
+	for (var i in badges_ra) {
+		badge_name = badges_ra[ i ];
+		badge_full_url = badges_url + badge_name.toLowerCase() + badge_mode + "/" + extension_full_id + ".svg";
+		badges_str += "[![" + badge_name + "](" + badge_full_url + ")](" + badge_full_url + ")&nbsp;" + eol;
+	}
+	return badges_str;
+}
+
 function fv_get_contributes(editor, package_obj, eol) {
 	var fs = require('fs');
 	var contributes_str = "";
 	var contributes_desc = "";
-	var extension_path = vscode.extensions.getExtension(package_obj.publisher + "." + package_obj.name).extensionPath;
+	var extension_full_id = package_obj.publisher + "." + package_obj.name;
+	var extension_path = vscode.extensions.getExtension(extension_full_id).extensionPath;
 
 	var contributes_conf_obj = package_obj.contributes.configuration.properties;
 	var contributes_activationevents_obj = package_obj.activationEvents;
 	var contributes_commands_obj = package_obj.contributes.commands;
 	var contributes_keybindings_obj = package_obj.contributes.keybindings;
+
 
 	contributes_str += eol + "# Settings" + eol + eol;
 	contributes_str += "This extension contributes the following settings:" + eol + eol;
@@ -398,12 +429,16 @@ function fv_get_contributes(editor, package_obj, eol) {
 	var contents_str = eol + shortcuts_str + contributes_str + eol;
 	var dollar_ph = "#§§§#";
 	contents_str = contents_str.replace(new RegExp("[\$]+", "gim"), dollar_ph);
+
+	var badges_str = fv_get_badges(extension_full_id, eol);
+
 	var assembler_ra = {
 		"app_name": package_obj.displayName,
 		"app_version": package_obj.version,
 		"app_description": package_obj.description,
 		"contents": contents_str,
-
+		"development_sections_warning": glob_env[ "messages" ][ "development_sections_warning" ],
+		"badges": badges_str,
 	};
 
 	var fs_item_time = new Date();
@@ -430,19 +465,24 @@ function fv_get_contributes(editor, package_obj, eol) {
 	whats_new_1_ra.shift();
 	whats_new = whats_new_1_ra.join("\n");
 	whats_new = whats_new.trim();
-	assembler_ra[ "whats_new" ] = whats_new;
+
 
 	readme_md += common_headers_md + file_master_readme_contents + eol;
-
+	// wats_new, essendo un abstract di changelog, deve essere fissato prima di essere aggiunto al readme
 	for (var i in assembler_ra) {
-		readme_md = readme_md.replace(new RegExp("\{" + i + "\}", "gim"), assembler_ra[ i ]);
+		whats_new = whats_new.replace(new RegExp("\{" + i + "\}", "gim"), assembler_ra[ i ]);
+	}
+	assembler_ra[ "whats_new" ] = whats_new;
+	for (var i in assembler_ra) {
 		changelog_md = changelog_md.replace(new RegExp("\{" + i + "\}", "gim"), assembler_ra[ i ]);
+		readme_md = readme_md.replace(new RegExp("\{" + i + "\}", "gim"), assembler_ra[ i ]);
+
 	}
 
 	readme_md = readme_md.replace(new RegExp("(" + dollar_ph + ")", "gim"), "$");
 	//console.log(readme_md + eol + "----------------------------------------###############################################" + eol);
-	fs.writeFileSync(file_readme_full_path, readme_md, "utf-8");
 	fs.writeFileSync(file_changelog_full_path, changelog_md, "utf-8");
+	fs.writeFileSync(file_readme_full_path, readme_md, "utf-8");
 	console.log("*" + filename_readme + "* and *" + filename_changelog + "* have been generated correctly. Please check.");
 	return readme_md;
 }

@@ -1,19 +1,26 @@
 <!-- RICORDATI: QUESTO FILE E' ASSEMBLATO DAL TUO SCRIPT - NON MODIFICARLO DA QUI -->
-<!-- 2019/06/14 16:21:30.859 -->
+<!-- 2019/06/22 16:16:25.171 -->
 
-# Version Boss - v. 1.3.4
+[![Version](https://vsmarketplacebadge.apphb.com/version-short/nicola-granata.version-boss.svg)](https://vsmarketplacebadge.apphb.com/version-short/nicola-granata.version-boss.svg)&nbsp;
+[![Downloads](https://vsmarketplacebadge.apphb.com/downloads-short/nicola-granata.version-boss.svg)](https://vsmarketplacebadge.apphb.com/downloads-short/nicola-granata.version-boss.svg)&nbsp;
+[![Installs](https://vsmarketplacebadge.apphb.com/installs-short/nicola-granata.version-boss.svg)](https://vsmarketplacebadge.apphb.com/installs-short/nicola-granata.version-boss.svg)&nbsp;
+[![Rating](https://vsmarketplacebadge.apphb.com/rating-short/nicola-granata.version-boss.svg)](https://vsmarketplacebadge.apphb.com/rating-short/nicola-granata.version-boss.svg)&nbsp;
+
+
+# Version Boss - v. 1.3.5
 
 Versioning like a Boss - Semantic Versioner for Scripting Languages: Insert and Update Version, according to http://semver.org directives, Copyrights of file, Distribution License, and save-it using shortcuts.
 
-## Release Notes for version 1.3.4
+## Release Notes for version 1.3.5
 
-- [`Fix`] Updated dependencies for security reasons.
+> Note: [`Development`] sections in *Changelog* are addressed to the developer to remind him of any important changes that occurred during the writing of the code and do not always concern improvements made to the extension or to the theme.
+
+- [`Development`] Optimized some parts of **Version Boss** Extension code;
+- [`Development`] Added function that generate **Version Boss** Extension badges in `README.md`.
 
 See `Changelog` for previous versions.
 
----
-
-## Very Important Informations for Upgrade to `Version Boss v. 1.2.0` and above
+### Very Important Informations for Upgrade to `Version Boss v. 1.2.0` and above
 
 1. **`PLEASE UPDATE BOUNDARIES STRUCTURE IN YOUR SCRIPTS`**: from version `1.2.0` was changed structure of boundaries from `<!#(.+)#!>` to `<!#(.+)>` and `</#(.+)#/>` to `</#(.+)>` (e.g.: `<!#FV#!>1.2.3456-beta.3</#FV#/>` to `<!#FV>1.2.3456-beta.3</#FV>`. Even all others boundaries are changed in this pattern!);
 1. **`PLEASE UPDATE YOUR SETTINGS`**: from version `1.2.0` was removed `Version Update On Pattern Match Only First` and  changed rule of `Version Update On Pattern Match` from `false` / `true` to `False` / `True` / `Only First Occurrence` (default: `False`);
@@ -160,7 +167,7 @@ When set to `false`, overrides are permitted (naturally you could change the var
 
 - `true`: only part of semver string matching the string of channels availabes in *Version Boss » Settings » Set Channels List* is recognized and updated
 
-- `false`: any channel string in semver full pattern is recognized and fixed/updated (e.g. `<!#FV> 1.25.0-roadrunner.1 </#FV>` -> `<!#FV> 1.25.0-roadrunner.1 </#FV>`)
+- `false`: any channel string in semver full pattern is recognized and fixed/updated (e.g. `<!#FV> 1.25.0-roadrunner.1 </#FV>` -> `<!#FV> 1.25.0-alpha.1</#FV>`)
 
 > `versionBoss.settings.versionUseChannelsStrictMatch` [type: `boolean`] 
 ---
