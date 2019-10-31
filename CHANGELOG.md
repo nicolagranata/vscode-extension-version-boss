@@ -1,11 +1,11 @@
 <!-- RICORDATI: QUESTO FILE E' ASSEMBLATO DAL TUO SCRIPT - NON MODIFICARLO DA QUI -->
-<!-- 2019/10/31 18:11:21.197 -->
+<!-- 2019/10/31 19:01:32.188 -->
 
 # Version Boss Change Log
 
 > Note: [`Development`] sections in *Changelog* are addressed to the developer to remind him of any important changes that occurred during the writing of the code and do not always concern improvements made to the extension or to the theme.
 
-## [1.3.7]
+## [1.3.9]
 - [`Fix`] Updated dependencies for security reasons.
 - [`Development`] Minor bug fix;
 
