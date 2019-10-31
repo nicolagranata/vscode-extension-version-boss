@@ -3,6 +3,10 @@
 > {development_sections_warning}
 
 ## [{app_version}]
+- [`Fix`] Updated dependencies for security reasons.
+- [`Development`] Minor bug fix;
+
+## [1.3.5]
 - [`Development`] Optimized some parts of **{app_name}** Extension code;
 - [`Development`] Added function that generate **{app_name}** Extension badges in `README.md`.
 

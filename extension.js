@@ -1136,7 +1136,7 @@ function fv_versioning(registered_command, root_item, semver_boss_command, step_
 					if (variable_name.charAt(0) != "$") {
 						variable_name = "$" + variable_name;
 					}
-					operator_open = variable_name + " = Array(";
+					operator_open = variable_name + " = array(";
 					operator_close = ");";
 					operator_assign = "=>";
 					bool_planguage_is_defined = true;

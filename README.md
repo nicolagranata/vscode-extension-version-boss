@@ -1,5 +1,5 @@
 <!-- RICORDATI: QUESTO FILE E' ASSEMBLATO DAL TUO SCRIPT - NON MODIFICARLO DA QUI -->
-<!-- 2019/06/22 16:16:25.171 -->
+<!-- 2019/10/31 18:11:21.197 -->
 
 [![Version](https://vsmarketplacebadge.apphb.com/version-short/nicola-granata.version-boss.svg)](https://vsmarketplacebadge.apphb.com/version-short/nicola-granata.version-boss.svg)&nbsp;
 [![Downloads](https://vsmarketplacebadge.apphb.com/downloads-short/nicola-granata.version-boss.svg)](https://vsmarketplacebadge.apphb.com/downloads-short/nicola-granata.version-boss.svg)&nbsp;
@@ -7,16 +7,16 @@
 [![Rating](https://vsmarketplacebadge.apphb.com/rating-short/nicola-granata.version-boss.svg)](https://vsmarketplacebadge.apphb.com/rating-short/nicola-granata.version-boss.svg)&nbsp;
 
 
-# Version Boss - v. 1.3.5
+# Version Boss - v. 1.3.7
 
 Versioning like a Boss - Semantic Versioner for Scripting Languages: Insert and Update Version, according to http://semver.org directives, Copyrights of file, Distribution License, and save-it using shortcuts.
 
-## Release Notes for version 1.3.5
+## Release Notes for version 1.3.7
 
 > Note: [`Development`] sections in *Changelog* are addressed to the developer to remind him of any important changes that occurred during the writing of the code and do not always concern improvements made to the extension or to the theme.
 
-- [`Development`] Optimized some parts of **Version Boss** Extension code;
-- [`Development`] Added function that generate **Version Boss** Extension badges in `README.md`.
+- [`Fix`] Updated dependencies for security reasons.
+- [`Development`] Minor bug fix;
 
 See `Changelog` for previous versions.
 
