@@ -1,12 +1,13 @@
 <!-- RICORDATI: QUESTO FILE E' ASSEMBLATO DAL TUO SCRIPT - NON MODIFICARLO DA QUI -->
-<!-- 2019/10/31 20:19:44.306 -->
+<!-- 2020/03/14 02:38:29.921 -->
 
 # Version Boss Change Log
 
 > Note: [`Development`] sections in *Changelog* are addressed to the developer to remind him of any important changes that occurred during the writing of the code and do not always concern improvements made to the extension or to the theme.
 
 ## [1.3.13]
-- [`Fix`] Updated dependencies (acorn) for security reasons.
+
+- [`Fix`] Updated dependencies (arp) for security reasons.
 
 ## [1.3.11]
 - [`Fix`] Updated dependencies for security reasons.

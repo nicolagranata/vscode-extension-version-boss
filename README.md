@@ -1,22 +1,21 @@
 <!-- RICORDATI: QUESTO FILE E' ASSEMBLATO DAL TUO SCRIPT - NON MODIFICARLO DA QUI -->
-<!-- 2019/10/31 20:19:44.306 -->
+<!-- 2020/03/14 02:38:29.921 -->
 
-[![Version](https://vsmarketplacebadge.apphb.com/version-short/nicola-granata.version-boss.svg)](https://vsmarketplacebadge.apphb.com/version-short/nicola-granata.version-boss.svg)&nbsp;
-[![Downloads](https://vsmarketplacebadge.apphb.com/downloads-short/nicola-granata.version-boss.svg)](https://vsmarketplacebadge.apphb.com/downloads-short/nicola-granata.version-boss.svg)&nbsp;
-[![Installs](https://vsmarketplacebadge.apphb.com/installs-short/nicola-granata.version-boss.svg)](https://vsmarketplacebadge.apphb.com/installs-short/nicola-granata.version-boss.svg)&nbsp;
-[![Rating](https://vsmarketplacebadge.apphb.com/rating-short/nicola-granata.version-boss.svg)](https://vsmarketplacebadge.apphb.com/rating-short/nicola-granata.version-boss.svg)&nbsp;
+[![Version](https://vsmarketplacebadge.apphb.com/version-short/nicola-granata.version-boss.svg?style=for-the-badge&colorA=FCAA33&colorB=3399CC)](https://vsmarketplacebadge.apphb.com/version-short/nicola-granata.version-boss.svg?style=for-the-badge&colorA=FCAA33&colorB=3399CC)&nbsp;
+[![Downloads](https://vsmarketplacebadge.apphb.com/downloads-short/nicola-granata.version-boss.svg?style=for-the-badge&colorA=66BB33&colorB=AA66FC)](https://vsmarketplacebadge.apphb.com/downloads-short/nicola-granata.version-boss.svg?style=for-the-badge&colorA=66BB33&colorB=AA66FC)&nbsp;
+[![Installs](https://vsmarketplacebadge.apphb.com/installs-short/nicola-granata.version-boss.svg?style=for-the-badge&colorA=66AAFC&colorB=FC66AA)](https://vsmarketplacebadge.apphb.com/installs-short/nicola-granata.version-boss.svg?style=for-the-badge&colorA=66AAFC&colorB=FC66AA)&nbsp;
+[![Rating](https://vsmarketplacebadge.apphb.com/rating-short/nicola-granata.version-boss.svg?style=for-the-badge&colorA=AC3BAF&colorB=6AA69C)](https://vsmarketplacebadge.apphb.com/rating-short/nicola-granata.version-boss.svg?style=for-the-badge&colorA=AC3BAF&colorB=6AA69C)&nbsp;
 
 
-# Version Boss - v. 1.3.11
+# Version Boss - v. 1.3.13
 
 Versioning like a Boss - Semantic Versioner for Scripting Languages: Insert and Update Version, according to http://semver.org directives, Copyrights of file, Distribution License, and save-it using shortcuts.
 
-## Release Notes for version 1.3.11
+## Release Notes for version 1.3.13
 
 > Note: [`Development`] sections in *Changelog* are addressed to the developer to remind him of any important changes that occurred during the writing of the code and do not always concern improvements made to the extension or to the theme.
 
-- [`Fix`] Updated dependencies for security reasons.
-- [`Development`] Minor bug fix;
+- [`Fix`] Updated dependencies (arp) for security reasons.
 
 See `Changelog` for previous versions.
 

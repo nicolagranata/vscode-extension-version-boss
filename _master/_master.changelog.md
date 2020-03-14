@@ -3,6 +3,10 @@
 > {development_sections_warning}
 
 ## [{app_version}]
+
+- [`Fix`] Updated dependencies (arp) for security reasons.
+
+## [1.3.11]
 - [`Fix`] Updated dependencies for security reasons.
 - [`Development`] Minor bug fix;
 
@@ -13,7 +17,7 @@
 ## [1.3.4]
 - [`Help`] Some corrections to inline help in Settings;
 - [`Fix`] Updated dependencies for security reasons;
-- [`Development`] Introduced `VSCode Extensions Manager` (fork of `VSCode Theme Master`), an external PHP tool only for extensions development to backup/clean/package/update dependencies/publish/make icons/manage extensions. 
+- [`Development`] Introduced `VSCode Extensions Manager` (fork of `VSCode Theme Master`), an external PHP tool only for extensions development to backup/clean/package/update dependencies/publish/make icons/manage extensions.
 
 ## [1.3.1]
 - [`Feature`] Now is possible to step-up/down inline version string even with `^` leading char (e.g. `"^1.35.0"`, used to indicate minimum version requirements in `package.json`);
