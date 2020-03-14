@@ -365,7 +365,7 @@ function fv_get_badges( extension_full_id, eol ) {
 		badge_full_url = badges_url + badge_name.toLowerCase() + badge_mode + "/" + extension_full_id + ".svg";
 		badge_full_url += "?style=for-the-badge&colorA=" + String( color_a_ra[ parseInt( i ) % color_a_ra_len ] ).substr( 1, 6 ) +
 			"&colorB=" + String( color_b_ra[ parseInt( i ) % color_b_ra_len ] ).substr( 1, 6 );
-		badges_str += "[![" + badge_name + "](" + badge_full_url + ")](" + badge_full_url + ")&nbsp;" + eol;
+		badges_str += "[![" + badge_name + "](" + badge_full_url + ")](" + badge_full_url + ")" + eol;
 	}
 	return badges_str;
 }
