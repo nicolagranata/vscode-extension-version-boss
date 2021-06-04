@@ -1,784 +1,1154 @@
 {
-    "name": "version-boss",
-    "displayName": "Version Boss",
-    "icon": "_gfx/version-boss-icon.png",
-    "description": "Versioning like a Boss - Semantic Versioner for Scripting Languages: Insert and Update Version, according to http://semver.org directives, Copyrights of file, Distribution License, and save-it using shortcuts.",
-    "version": "1.3.13",
-    "publisher": "nicola-granata",
-    "license": "BSD-3-Clause-Attribution",
-    "author": {
-        "name": "Nicola Granata",
-        "email": "vscode.extensions@daemoncms.com",
-        "url": "https://github.com/nicolagranata"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/nicolagranata/vscode-extension-version-boss.git"
-    },
-    "keywords": [
-        "semver.org",
-        "semantic versioner",
-        "versioning",
-        "licensing",
-        "copyrighting"
-    ],
-    "engines": {
-        "vscode": "^1.35.0"
-    },
-    "categories": [
-        "Other"
-    ],
-    "activationEvents": [
-        "onCommand:extension.versionboss-step-patch-up-autosave",
-        "onCommand:extension.versionboss-step-chanver-up",
-        "onCommand:extension.versionboss-step-channel-up",
-        "onCommand:extension.versionboss-step-patch-up",
-        "onCommand:extension.versionboss-step-minor-up",
-        "onCommand:extension.versionboss-step-major-up",
-        "onCommand:extension.versionboss-step-chanver-down",
-        "onCommand:extension.versionboss-step-channel-down",
-        "onCommand:extension.versionboss-step-patch-down",
-        "onCommand:extension.versionboss-step-minor-down",
-        "onCommand:extension.versionboss-step-major-down",
-        "onCommand:extension.versionboss-step-version-align",
-        "onCommand:extension.versionboss-boundversion",
-        "onCommand:extension.versionboss-nakedversion",
-        "onCommand:extension.versionboss-bannedversion",
-        "onCommand:extension.versionboss-copyrights",
-        "onCommand:extension.versionboss-licenses",
-        "onCommand:extension.versionboss-getinfosarray",
-        "onCommand:extension.versionboss-getsettingshelp"
-    ],
-    "main": "./extension.js",
-    "contributes": {
-        "commands": [
-            {
-                "command": "extension.versionboss-step-patch-up-autosave",
-                "title": "Patch - insert or step-up and save (autosave ever enabled)",
-                "category": "Version Boss"
-            },
-            {
-                "command": "extension.versionboss-step-patch-up",
-                "title": "Patch - insert or step-up",
-                "category": "Version Boss"
-            },
-            {
-                "command": "extension.versionboss-step-minor-up",
-                "title": "Minor - insert or step-up",
-                "category": "Version Boss"
-            },
-            {
-                "command": "extension.versionboss-step-major-up",
-                "title": "Major - insert or step-up",
-                "category": "Version Boss"
-            },
-            {
-                "command": "extension.versionboss-step-channel-up",
-                "title": "Channel - insert or step-up",
-                "category": "Version Boss"
-            },
-            {
-                "command": "extension.versionboss-step-chanver-up",
-                "title": "Channel Ver. - insert or step-up",
-                "category": "Version Boss"
-            },
-            {
-                "command": "extension.versionboss-step-patch-down",
-                "title": "Patch - insert or step-down",
-                "category": "Version Boss"
-            },
-            {
-                "command": "extension.versionboss-step-minor-down",
-                "title": "Minor - insert or step-down",
-                "category": "Version Boss"
-            },
-            {
-                "command": "extension.versionboss-step-major-down",
-                "title": "Major - insert or step-down",
-                "category": "Version Boss"
-            },
-            {
-                "command": "extension.versionboss-step-channel-down",
-                "title": "Channel - insert or step-down",
-                "category": "Version Boss"
-            },
-            {
-                "command": "extension.versionboss-step-chanver-down",
-                "title": "Channel Ver. - insert or step-down",
-                "category": "Version Boss"
-            },
-            {
-                "command": "extension.versionboss-step-version-align",
-                "title": "Align all version numbers to max version number without step-up/down",
-                "category": "Version Boss"
-            },
-            {
-                "command": "extension.versionboss-boundversion",
-                "title": "Force insert version, with boundaries, at caret position",
-                "category": "Version Boss"
-            },
-            {
-                "command": "extension.versionboss-nakedversion",
-                "title": "Force insert version, without boundaries, at caret position",
-                "category": "Version Boss"
-            },
-            {
-                "command": "extension.versionboss-bannedversion",
-                "title": "Forces insert version, without boundaries, in the position of approach with the main ban of char (prevent the global passage up / down)",
-                "category": "Version Boss"
-            },
-            {
-                "command": "extension.versionboss-copyrights",
-                "title": "Copyrights - insert or update",
-                "category": "Version Boss"
-            },
-            {
-                "command": "extension.versionboss-licenses",
-                "title": "License - insert or update",
-                "category": "Version Boss"
-            },
-            {
-                "command": "extension.versionboss-getinfosarray",
-                "title": "Get Copyrights Informations and put it into an PHP Associative Array or JS Object or JSON string (by file extension)",
-                "category": "Version Boss"
-            },
-            {
-                "command": "extension.versionboss-getsettingshelp",
-                "title": "Help - Generate Help in Console log (usefull only for development of this extension)",
-                "category": "Version Boss"
-            }
-        ],
-        "menus": {
-            "commandPalette": [
-                {
-                    "command": "extension.versionboss-step-major-up",
-                    "group": "Version Boss",
-                    "when": "editorTextFocus"
-                },
-                {
-                    "command": "extension.versionboss-step-minor-up",
-                    "group": "Version Boss",
-                    "when": "editorTextFocus"
-                },
-                {
-                    "command": "extension.versionboss-step-patch-up",
-                    "group": "Version Boss",
-                    "when": "editorTextFocus"
-                },
-                {
-                    "command": "extension.versionboss-step-channel-up",
-                    "group": "Version Boss",
-                    "when": "editorTextFocus"
-                },
-                {
-                    "command": "extension.versionboss-step-chanver-up",
-                    "group": "Version Boss",
-                    "when": "editorTextFocus"
-                },
-                {
-                    "command": "extension.versionboss-step-version-align",
-                    "group": "Version Boss",
-                    "when": "editorTextFocus"
-                },
-                {
-                    "command": "extension.versionboss-boundversion",
-                    "group": "Version Boss",
-                    "when": "editorTextFocus"
-                },
-                {
-                    "command": "extension.versionboss-nakedversion",
-                    "group": "Version Boss",
-                    "when": "editorTextFocus"
-                },
-                {
-                    "command": "extension.versionboss-bannedversion",
-                    "group": "Version Boss",
-                    "when": "editorTextFocus"
-                },
-                {
-                    "command": "extension.versionboss-copyrights",
-                    "group": "Version Boss",
-                    "when": "editorTextFocus"
-                },
-                {
-                    "command": "extension.versionboss-licenses",
-                    "group": "Version Boss",
-                    "when": "editorTextFocus"
-                },
-                {
-                    "command": "extension.versionboss-getinfosarray",
-                    "group": "Version Boss",
-                    "when": "editorTextFocus"
-                },
-                {
-                    "command": "extension.versionboss-getsettingshelp",
-                    "group": "Version Boss",
-                    "when": "editorTextFocus"
-                }
-            ],
-            "editor/context": [
-                {
-                    "command": "extension.versionboss-step-major-up",
-                    "group": "Version Boss",
-                    "when": "editorTextFocus"
-                },
-                {
-                    "command": "extension.versionboss-step-minor-up",
-                    "group": "Version Boss",
-                    "when": "editorTextFocus"
-                },
-                {
-                    "command": "extension.versionboss-step-patch-up",
-                    "group": "Version Boss",
-                    "when": "editorTextFocus"
-                },
-                {
-                    "command": "extension.versionboss-step-channel-up",
-                    "group": "Version Boss",
-                    "when": "editorTextFocus"
-                },
-                {
-                    "command": "extension.versionboss-step-chanver-up",
-                    "group": "Version Boss",
-                    "when": "editorTextFocus"
-                },
-                {
-                    "command": "extension.versionboss-step-version-align",
-                    "group": "Version Boss",
-                    "when": "editorTextFocus"
-                },
-                {
-                    "command": "extension.versionboss-boundversion",
-                    "group": "Version Boss",
-                    "when": "editorTextFocus"
-                },
-                {
-                    "command": "extension.versionboss-nakedversion",
-                    "group": "Version Boss",
-                    "when": "editorTextFocus"
-                },
-                {
-                    "command": "extension.versionboss-bannedversion",
-                    "group": "Version Boss",
-                    "when": "editorTextFocus"
-                },
-                {
-                    "command": "extension.versionboss-copyrights",
-                    "group": "Version Boss",
-                    "when": "editorTextFocus"
-                },
-                {
-                    "command": "extension.versionboss-licenses",
-                    "group": "Version Boss",
-                    "when": "editorTextFocus"
-                },
-                {
-                    "command": "extension.versionboss-getinfosarray",
-                    "group": "Version Boss",
-                    "when": "editorTextFocus"
-                },
-                {
-                    "command": "extension.versionboss-getsettingshelp",
-                    "group": "Version Boss",
-                    "when": "editorTextFocus"
-                }
-            ]
-        },
-        "keybindings": [
-            {
-                "command": "extension.versionboss-step-major-up",
-                "key": "ctrl+alt+shift+Q",
-                "mac": "ctrl+option+shift+Q",
-                "when": "editorTextFocus"
-            },
-            {
-                "command": "extension.versionboss-step-minor-up",
-                "key": "ctrl+alt+shift+W",
-                "mac": "ctrl+option+shift+W",
-                "when": "editorTextFocus"
-            },
-            {
-                "command": "extension.versionboss-step-patch-up-autosave",
-                "key": "ctrl+alt+shift+S",
-                "mac": "ctrl+option+shift+S",
-                "when": "editorTextFocus"
-            },
-            {
-                "command": "extension.versionboss-step-patch-up",
-                "key": "ctrl+alt+shift+E",
-                "mac": "ctrl+option+shift+E",
-                "when": "editorTextFocus"
-            },
-            {
-                "command": "extension.versionboss-step-channel-up",
-                "key": "ctrl+alt+shift+R",
-                "mac": "ctrl+option+shift+R",
-                "when": "editorTextFocus"
-            },
-            {
-                "command": "extension.versionboss-step-chanver-up",
-                "key": "ctrl+alt+shift+T",
-                "mac": "ctrl+option+shift+T",
-                "when": "editorTextFocus"
-            },
-            {
-                "command": "extension.versionboss-step-major-down",
-                "key": "ctrl+alt+shift+Y",
-                "mac": "ctrl+option+shift+Y",
-                "when": "editorTextFocus"
-            },
-            {
-                "command": "extension.versionboss-step-minor-down",
-                "key": "ctrl+alt+shift+U",
-                "mac": "ctrl+option+shift+U",
-                "when": "editorTextFocus"
-            },
-            {
-                "command": "extension.versionboss-step-patch-down",
-                "key": "ctrl+alt+shift+I",
-                "mac": "ctrl+option+shift+I",
-                "when": "editorTextFocus"
-            },
-            {
-                "command": "extension.versionboss-step-channel-down",
-                "key": "ctrl+alt+shift+O",
-                "mac": "ctrl+option+shift+O",
-                "when": "editorTextFocus"
-            },
-            {
-                "command": "extension.versionboss-step-chanver-down",
-                "key": "ctrl+alt+shift+P",
-                "mac": "ctrl+option+shift+P",
-                "when": "editorTextFocus"
-            },
-            {
-                "command": "extension.versionboss-step-version-align",
-                "key": "ctrl+alt+shift+A",
-                "mac": "ctrl+option+shift+A",
-                "when": "editorTextFocus"
-            },
-            {
-                "command": "extension.versionboss-boundversion",
-                "key": "ctrl+alt+shift+B",
-                "mac": "ctrl+option+shift+B",
-                "when": "editorTextFocus"
-            },
-            {
-                "command": "extension.versionboss-nakedversion",
-                "key": "ctrl+alt+shift+V",
-                "mac": "ctrl+option+shift+V",
-                "when": "editorTextFocus"
-            },
-            {
-                "command": "extension.versionboss-bannedversion",
-                "key": "ctrl+alt+shift+N",
-                "mac": "ctrl+option+shift+N",
-                "when": "editorTextFocus"
-            },
-            {
-                "command": "extension.versionboss-copyrights",
-                "key": "ctrl+alt+shift+C",
-                "mac": "ctrl+option+shift+C",
-                "when": "editorTextFocus"
-            },
-            {
-                "command": "extension.versionboss-licenses",
-                "key": "ctrl+alt+shift+L",
-                "mac": "ctrl+option+shift+L",
-                "when": "editorTextFocus"
-            },
-            {
-                "command": "extension.versionboss-getinfosarray",
-                "key": "ctrl+alt+shift+J",
-                "mac": "ctrl+option+shift+J",
-                "when": "editorTextFocus"
-            },
-            {
-                "command": "extension.versionboss-getsettingshelp",
-                "key": "ctrl+alt+shift+H",
-                "mac": "ctrl+option+shift+H",
-                "when": "editorTextFocus"
-            }
-        ],
-        "configuration": {
-            "type": "object",
-            "properties": {
-                "versionBoss.settings.setVariableNameForCopyrightsInfosAssociativeArray": {
-                    "type": "string",
-                    "minLength": 0,
-                    "default": "semverCopyrightsInfosObj",
-                    "markdownDescription": "Set the name of the default variable to insert the Copyrights Infos Array  into the code.\r\n\r\n> `PHP Language Tip`: do not use the prefix **`$`**: it will be added automatically based on the programming language of the file (if inserted, will be ignored in PHP files but not in others programming languages). You can use an array item (e.g. `glob_env[\"copyrights_infos\"]`).\r\n\r\n`Warning`: because of complexity of programming languages, this field not use pattern matching to check malformed typing. Please, pay attention!"
-                },
-                "versionBoss.settings.checkIfVariableNameForCopyrightsInfosAssociativeArrayExists": {
-                    "type": "boolean",
-                    "default": false,
-                    "markdownDescription": "Check if the Variable Name For Copyrights Storage already exists and prevents writing to avoid overrides.\r\n\r\nWhen set to `false`, overrides are permitted (naturally you could change the variable name after insert)."
-                },
-                "versionBoss.settings.setDefaultQuotingCharForGeneratedCode": {
-                    "type": "string",
-                    "enum": [
-                        "\"",
-                        "'",
-                        "`"
-                    ],
-                    "default": "\"",
-                    "markdownDescription": "Set the default quoting char to insert generated code into your code (e.g. Copyrights Infos Array)."
-                },
-                "versionBoss.settings.versionUseChannelsStrictMatch": {
-                    "type": "boolean",
-                    "default": false,
-                    "markdownDescription": "Enable the strict matching of channel part of semver string.\r\n\r\n- `true`: only part of semver string matching the string of channels availabes in *Version Boss » Settings » Set Channels List* is recognized and updated\r\n\r\n- `false`: any channel string in semver full pattern is recognized and fixed/updated (e.g. `<!#FV> 1.25.0-roadrunner.1 </#FV>` -> `<!#FV> 1.25.0-alpha.1</#FV>`)"
-                },
-                "versionBoss.settings.versionUpdateOnPatternMatch": {
-                    "type": "string",
-                    "default": "False",
-                    "enum": [
-                        "False",
-                        "True",
-                        "Only First Occurrence"
-                    ],
-                    "minLength": 1,
-                    "markdownDescription": "Enable Version Update even without a boundaries. Version string must be enclosed in double-quote or single-quote.\r\n\r\n`Warning`: this may conflict with your code if you use patterns similar to `Major.Minor.Patch [-Channel [.ChannelVersion]]` (e.g. `\"1.0.0-alpha.2\"`) for different purposes than file versioning. You can insert a symbol before first digit to prevent update of a specific matching string (eg. `1.23.45` -> `#1.23.45`).\r\n\r\nUpdate only first occurrence of semver string enclosed in pair of double-quote or single-quote (e.g. \"`1.23.45`\") `in page` or `in line`.\r\n\r\nOn update semver if line where is caret position not match semver pattern, the first occurrence in page and all instances in boundaries (e.g. `<!#FV> 1.25.0-roadrunner.1 </#FV>`) are updated.\r\n\r\nOn update semver, if line where is caret position match semver pattern:\r\n\r\n1. `once`: the occurrence is updated; \r\n\r\n2. `more than once`: only first occurrence **after caret position** is updated.\r\n\r\n3. `more than once` but caret position after lastest match: to avoid unwanted update, no one occurrence is updated."
-                },
-                "versionBoss.settings.charForBannedVersion": {
-                    "type": "string",
-                    "default": "#",
-                    "enum": [
-                        "#",
-                        "@",
-                        "§",
-                        "*"
-                    ],
-                    "minLength": 1,
-                    "markdownDescription": "Char for banned version for Changelog or for Function versioning (e.g. `#` -> `#1.23.45`)."
-                },
-                "versionBoss.settings.autoSaveAfterStepUp": {
-                    "type": "boolean",
-                    "default": false,
-                    "markdownDescription": "Save file after each step up."
-                },
-                "versionBoss.settings.insertQuotesWithFileVersion": {
-                    "type": "boolean",
-                    "default": false,
-                    "markdownDescription": "Insert File Version (without boundaries) with o without quotes."
-                },
-                "versionBoss.settings.setFirstVersion": {
-                    "type": "string",
-                    "default": "0.0.0",
-                    "minLength": 5,
-                    "pattern": "^(([0-9]+)\\.([0-9]+)\\.([0-9]+)(|\\-([a-z]{1,16}(|\\.([1-9]{1}([0-9]*))))))$",
-                    "markdownDescription": "Set Fisrt version to use when you start versioning `Major.Minor.Patch[-(any Channel[.(any ChannelVersion > 0)]]`\r\n\r\ne.g.: `1.0.0`,`0.0.0`, `1.0.0-beta.1`."
-                },
-                "versionBoss.settings.setChannelsList": {
-                    "type": "string",
-                    "default": "alpha, beta, perpBeta, openBeta, closedBeta, RC, RTM, GA, RTW",
-                    "minLength": 1,
-                    "pattern": "^(([a-zA-Z\\_]+)(,(\\s*)|$))+$",
-                    "markdownDescription": "Channels (except `Release` wich no have any abbreviation in semver.org directives - multiple data separated by comma `,`).\r\n\r\ne.g. `alpha`, `beta`,[`...`], `RC`,`RTM`,`GA`, `RTW`.\r\n\r\n`Warning 1`: only words with a-z chars and comma are valid values: the other symbols will be ignored."
-                },
-                "versionBoss.settings.showInformationMessage": {
-                    "type": "boolean",
-                    "default": true,
-                    "markdownDescription": "Show Information Message when action is done."
-                },
-                "versionBoss.settings.showWarningAndErrorMessage": {
-                    "type": "boolean",
-                    "default": true,
-                    "markdownDescription": "Show Warning and Errors Messages when action could not be done."
-                },
-                "versionBoss.settings.resetChildsOnStepUp": {
-                    "type": "boolean",
-                    "default": true,
-                    "markdownDescription": "Set `0` to childs when step-up Minor or Major version.\r\n\r\ne.g. `true`:\r\n1. Step-up Major = `1.23.45` -> **`2.0.0`**;\r\n2. Step-up Minor = `1.23.45` -> `1.`**`24.0`**;\r\n\r\ne.g. `false`:\r\n1. Step-up Major = `1.23.45` -> **`2`**`.23.45`;\r\n2. Step-up Minor = `1.23.45` -> `1.`**`24`**`.45`."
-                },
-                "versionBoss.settings.setChannelToAlphaOnMajorVersionStepUp": {
-                    "type": "boolean",
-                    "default": false,
-                    "markdownDescription": "Set channel to `alpha` when step-up Major version.\r\n\r\ne.g. `true`:\r\n1. Step-up Major = `1.23.45-RC.3` -> **`2.0.0-alpha`**;\r\n\r\ne.g. `false` :\r\n1. Step-up Major = `1.23.45-RC.3` -> **`2.0.0`** (with `Reset Childs On Step Up ` set to `true`);\r\n2. Step-up Major = `1.23.45-RC.3` -> **`2.0.0-RC.3`** (with `Reset Childs On Step Up ` set to `false`)."
-                },
-                "versionBoss.settings.nonStandard.stepUpChannelOnChannelVersionLimitReach": {
-                    "type": "integer",
-                    "default": 0,
-                    "minimum": 0,
-                    "markdownDescription": "`Warning! - is not a standard`: Step Up Channel when Channel Version reach this limit (`0` for no step-up).\r\n\r\ne.g. Version limit: `3`: Steping up Channel Version from `1.23.45-beta.3` to `1.23.45-beta.4` make  **`1.23.45-RC`**."
-                },
-                "versionBoss.settings.nonStandard.stepUpMinorVersionOnPatchVersionLimitReach": {
-                    "type": "integer",
-                    "default": 0,
-                    "minimum": 0,
-                    "markdownDescription": "`Warning! - is not a standard`: Step Up Minor Version when Patch Version reach this limit (`0` for no step-up).\r\n\r\ne.g. Version limit: `99`: Steping up Patch Version from `1.23.99` to `1.23.100` make  **`1.24.00`**."
-                },
-                "versionBoss.settings.nonStandard.stepUpMajorVersionOnMinorVersionLimitReach": {
-                    "type": "integer",
-                    "default": 0,
-                    "minimum": 0,
-                    "markdownDescription": "`Warning! - is not a standard`: Step Up Major Version when Minor Version reach this limit (`0` for no step-up).\r\n\r\ne.g. Version limit: `99`: Steping up Patch Version from `1.99.45` to `1.100.45` make  **`2.00.00`**."
-                },
-                "versionBoss.boundaries.tagEnclosers": {
-                    "type": "string",
-                    "default": "<,>",
-                    "enum": [
-                        "<,>",
-                        "[,]",
-                        "{,}"
-                    ],
-                    "markdownDescription": "Chars which enclose the boundary.\r\n\r\ne.g. `<` and `>` in `<!#FV>`1.23.45`</#FV>`."
-                },
-                "versionBoss.boundaries.boundaryIdentityChar": {
-                    "type": "string",
-                    "enum": [
-                        "#",
-                        "^",
-                        "_",
-                        "@",
-                        "§",
-                        "-"
-                    ],
-                    "default": "#",
-                    "markdownDescription": "Symbol which set the identity of open/close boundary (e.g. `#` in `<!#FV>`)."
-                },
-                "versionBoss.boundaries.boundaryOpenChar": {
-                    "type": "string",
-                    "enum": [
-                        "!",
-                        "#",
-                        "^"
-                    ],
-                    "default": "!",
-                    "markdownDescription": "Symbol which set open boundary (set to `not equal` to Boundary Close Char, or it will be substituted with another one, e.g. `!` in  `<!#FV>`)."
-                },
-                "versionBoss.boundaries.boundaryCloseChar": {
-                    "type": "string",
-                    "enum": [
-                        "/",
-                        "@",
-                        "§"
-                    ],
-                    "default": "/",
-                    "markdownDescription": "Symbol which set close boundary (set to `not equal` to Boundary Open Char, or it will be substituted with another one, e.g. `/` in `</#FV>`)."
-                },
-                "versionBoss.boundaries.dataStringIDs.fileName": {
-                    "type": "string",
-                    "default": "FN",
-                    "minLength": 1,
-                    "maxLength": 16,
-                    "markdownDescription": "String to recognize and update or insert File Name boundaries and values."
-                },
-                "versionBoss.boundaries.dataStringIDs.fileBirth": {
-                    "type": "string",
-                    "default": "FB",
-                    "minLength": 1,
-                    "maxLength": 16,
-                    "markdownDescription": "String to recognize and update or insert File Birth boundaries and values."
-                },
-                "versionBoss.boundaries.dataStringIDs.fileVersion": {
-                    "type": "string",
-                    "default": "FV",
-                    "minLength": 1,
-                    "maxLength": 16,
-                    "markdownDescription": "String to recognize and update or insert File Version boundaries and values."
-                },
-                "versionBoss.boundaries.dataStringIDs.fileModificationTime": {
-                    "type": "string",
-                    "default": "FT",
-                    "minLength": 1,
-                    "maxLength": 16,
-                    "markdownDescription": "String to recognize and update or insert File Modification Time boundaries and values."
-                },
-                "versionBoss.boundaries.dataStringIDs.copyrights": {
-                    "type": "string",
-                    "default": "CR",
-                    "minLength": 1,
-                    "maxLength": 16,
-                    "markdownDescription": "String to recognize or insert File Copyrights boundaries and values.\r\n\r\n***Note***:\r\n\r\nfor preserve data manually inserted in Copyrights block, system prevent to update it accidentally by pressing shortcuts. You have to delete the Copyrigths block to inserert new data (at least, if you want to leave old data for your convenience, delete only the boundaries tags <!#CR#!> and </#CR#/>). This is not valid for all other infos (even in Copirights block) wich is enclosed in boundaries (e.g. File Version, File Mod Time are ever updated,  Licensing only on pressing shortcuts)."
-                },
-                "versionBoss.boundaries.dataStringIDs.licenses": {
-                    "type": "string",
-                    "default": "LT",
-                    "minLength": 1,
-                    "maxLength": 16,
-                    "markdownDescription": "String to recognize and update or insert File License boundaries and values."
-                },
-                "versionBoss.boundaries.dataStringIDs.licensesUrl": {
-                    "type": "string",
-                    "default": "LU",
-                    "minLength": 1,
-                    "maxLength": 16,
-                    "markdownDescription": "String to recognize and update or insert File License URL boundaries and values."
-                },
-                "versionBoss.boundaries.dataStringIDs.licensesClarification": {
-                    "type": "string",
-                    "default": "LD",
-                    "minLength": 1,
-                    "maxLength": 16,
-                    "markdownDescription": "String to recognize and update or insert File License Description boundaries and values."
-                },
-                "versionBoss.settings.copyrights.insertExtensionAuthorCredits": {
-                    "type": "boolean",
-                    "default": true,
-                    "markdownDescription": "If you want, can include credits of the author of this extension: it will occupy only one row at bottom of yours copyrights informations."
-                },
-                "versionBoss.settings.copyrights.rowMaxLength": {
-                    "type": "integer",
-                    "minimum": 40,
-                    "maximum": 160,
-                    "default": 120,
-                    "markdownDescription": "Length of the rows of Copyrights in columns (80 columns suggested in Coding Standard Directives)."
-                },
-                "versionBoss.settings.copyrights.header": {
-                    "type": "string",
-                    "default": "Copyrigths ©",
-                    "markdownDescription": "Header of Copyrights box."
-                },
-                "versionBoss.settings.copyrights.fileAndLicensesInfosHeader": {
-                    "type": "string",
-                    "default": "File and License Informations",
-                    "markdownDescription": "Header of File and Licenses Informations box."
-                },
-                "versionBoss.settings.copyrights.setLicensesPatternUrl": {
-                    "type": "string",
-                    "default": "https://spdx.org/licenses/{LICENSE_ID}.html",
-                    "pattern": "^(((ht|f)tps?\\://(www(\\d*)\\.|))([a-z0-9\\_\\-\\.]+)\\.([a-z0-9]{2,64})(|(([^ ]*))((\\/|)(\\?([^\\? ]*)|))))+$|^$",
-                    "markdownDescription": "This is the path to the site or file where you can store information about the license of your script.\r\n\r\nBy default, it use [SPDX site](https://spdx.org/licenses/)  data and the special keyword *`{LICENSE_ID}`* thath will be dinamically converted with license-id you choosed in url of ***SPDX***. For this, you have to insert in *Settings » Copyrights » Set Licences List* the exact IDs found at [SPDX Site](https://spdx.org/licenses/) in 2nd column (named *Identifier*), e.g. `LGPL-3.0-or-later` will produce the following url `https://spdx.org/licenses/LGPL-3.0-or-later.html`. Url can be customized (e.g. `https://example.com/get_lic.php?somevar=someval&mylicense={LICENSE_ID}`)."
-                },
-                "versionBoss.settings.copyrights.setLicensesList": {
-                    "type": "string",
-                    "default": "BSD-3-Clause-Attribution,BSD-3-Clause,BSD-2-Clause,GPL-3.0-or-later,LGPL-3.0-or-later,MIT,MPL-2.0,CDDL-1.1,EPL-2.0,Apache-2.0,Copyrighted Commercial Software|http://wwww.example.com/licenses/?&lic={LICENSE_ID},Free Software for Private and Commercial use|See License.txt,Free Software for Private use|See License-{LICENSE_ID}.txt",
-                    "markdownDescription": "Licenses in which, generally, you want to distribute your software (separate licenses by comma `,` and structure `LICENSE_NAME_OR_ID` | `LICENSE_URL` | `LICENSE_CLARIFICATION` using pipe `|`). Value before first comma is default.\r\n\r\n1. `LICENSE_NAME_OR_ID` : use id from [SPDX site](https://spdx.org/licenses/) or your personal id or name (name will be converted in ID-like);\r\n\r\n2. `LICENSE_URL`: url of your license. If empty, value in *Set Licenses Pattern Url* will be used;\r\n\r\n3. `LICENSE_CLARIFICATION`: Short clarification about licenses. If empty, value in *Set Licenses Default Clarification* will be used.\r\n\r\n*To get Licenses IDs*: go to [SPDX Site](https://spdx.org/licenses/), get strings (even more than one) from 2nd column (named *Identifier*) and enter it in this field (separated by comma `,`)."
-                },
-                "versionBoss.settings.copyrights.setLicensesDefaultClarification": {
-                    "type": "string",
-                    "default": "This file may not be redistributed in whole or significant part.",
-                    "markdownDescription": "Licenses clarification about use of file and its contents. This is default clarification. To set clarification for each license, please use *Set Licenses List*."
-                },
-                "versionBoss.settings.copyrights.insertFileBasename": {
-                    "type": "boolean",
-                    "default": true,
-                    "markdownDescription": "Insert current file basename."
-                },
-                "versionBoss.settings.copyrights.insertFileBirthDateAndTime": {
-                    "type": "boolean",
-                    "default": true,
-                    "markdownDescription": "Insert current file birth date."
-                },
-                "versionBoss.settings.copyrights.owner": {
-                    "type": "string",
-                    "enum": [
-                        "0 - Author",
-                        "1 - Company",
-                        "2 - Author&Company",
-                        "3 - Company&Author"
-                    ],
-                    "markdownDescription": "Owner of File / Code."
-                },
-                "versionBoss.settings.copyrights.labelAndValueSeparatorChars": {
-                    "type": "string",
-                    "default": ">",
-                    "minLength": 0,
-                    "maxLength": 4,
-                    "markdownDescription": "Separator betwen Labels and Values of Copyrights data."
-                },
-                "versionBoss.settings.copyrights.topAndBottomFrameChars": {
-                    "type": "string",
-                    "default": "*",
-                    "minLength": 1,
-                    "maxLength": 4,
-                    "markdownDescription": "Copyrights Frame chars.\r\nAt least one char."
-                },
-                "versionBoss.settings.copyrights.leftAndRightFrameChars": {
-                    "type": "string",
-                    "default": "*",
-                    "minLength": 0,
-                    "maxLength": 4,
-                    "markdownDescription": "Copyrights Frame chars.\r\nLeave empty to use char `space` and make a very basic copyrights frame.\r\nNote: the first char of `Top And Bottom Frame Chars` is used as left character to prevent format of comment block by the editor."
-                },
-                "versionBoss.settings.copyrights.fillChars": {
-                    "type": "string",
-                    "default": "",
-                    "minLength": 0,
-                    "maxLength": 4,
-                    "markdownDescription": "Copyrights empty spaces Fill char.\r\nLeave empty to use char `space`."
-                },
-                "versionBoss.settings.copyrights.sectionSeparatorChars": {
-                    "type": "string",
-                    "default": "-",
-                    "minLength": 1,
-                    "maxLength": 4,
-                    "markdownDescription": "Separator betwen Headers and data of Copyrights information."
-                },
-                "versionBoss.copyrights.authorsNames": {
-                    "type": "string",
-                    "default": "Wyle Coyote",
-                    "markdownDescription": "Authors Names (Labels separated by `:` from data and multiple data separated by comma `,`).\r\nLeave empty for none."
-                },
-                "versionBoss.copyrights.authorsEmail": {
-                    "type": "string",
-                    "default": "wyle.coyote@example.com",
-                    "pattern": "^(([a-z0-9\\_\\-\\.]+)\\@([a-z0-9\\_\\-\\.]+)\\.([a-z0-9]{2,64})(,(\\s*)|$))+$|^$",
-                    "markdownDescription": "Author E-Mail address.\r\nLeave empty for none."
-                },
-                "versionBoss.copyrights.authorsWebsites": {
-                    "type": "string",
-                    "default": "http://www.example.com, http://wwww.test.com",
-                    "pattern": "^(((ht|f)tps?\\://(www(\\d*)\\.|))([a-z0-9\\_\\-\\.]+)\\.([a-z0-9]{2,64})(|(([^ ]*))(\\/|)(\\?([^\\? ]*)|))(,(\\s*)|$))+$|^$",
-                    "markdownDescription": "Your websites address (Labels separated by `:` from data and multiple data separated by comma `,`).\r\ne.g.: If you use short url -> Facebook: `https://bit.ly/18AOiDE`."
-                },
-                "versionBoss.copyrights.authorsSocials": {
-                    "type": "string",
-                    "default": "https://www.facebook.com/, https://www.twitter.com/,",
-                    "pattern": "^(((ht|f)tps?\\://(www(\\d*)\\.|))([a-z0-9\\_\\-\\.]+)\\.([a-z0-9]{2,64})(|(([^ ]*))(\\/|)(\\?([^\\? ]*)|))(,(\\s*)|$))+$|^$",
-                    "markdownDescription": "Company Social Networks .\r\nMultiple data separated by comma `,`.\r\nLeave empty for none."
-                },
-                "versionBoss.copyrights.companyName": {
-                    "type": "string",
-                    "default": "A.C.M.E.",
-                    "markdownDescription": "Company name.\r\nLeave empty for none."
-                },
-                "versionBoss.copyrights.companyEmail": {
-                    "type": "string",
-                    "default": "acme@example.com",
-                    "pattern": "^(([a-z0-9\\_\\-\\.]+)\\@([a-z0-9\\_\\-\\.]+)\\.([a-z0-9]{2,64})(,(\\s*)|$))+$|^$",
-                    "markdownDescription": "Company E-Mail address.\r\nMultiple data separated by comma `,`.\r\nLeave empty for none."
-                },
-                "versionBoss.copyrights.companyWebsites": {
-                    "type": "string",
-                    "default": "http://www.example.com",
-                    "pattern": "^(((ht|f)tps?\\://(www(\\d*)\\.|))([a-z0-9\\_\\-\\.]+)\\.([a-z0-9]{2,64})(|(([^ ]*))(\\/|)(\\?([^\\? ]*)|))(,(\\s*)|$))+$|^$",
-                    "markdownDescription": "Company websites address.\r\nMultiple data separated by comma `,`.\r\nLeave empty for none."
-                },
-                "versionBoss.copyrights.companySocials": {
-                    "type": "string",
-                    "default": "https://www.facebook.com/, https://www.twitter.com/,",
-                    "pattern": "^(((ht|f)tps?\\://(www(\\d*)\\.|))([a-z0-9\\_\\-\\.]+)\\.([a-z0-9]{2,64})(|(([^ ]*))(\\/|)(\\?([^\\? ]*)|))(,(\\s*)|$))+$|^$",
-                    "markdownDescription": "Company Social Networks .\r\nMultiple data separated by comma `,`.\r\nLeave empty for none."
-                },
-                "versionBoss.copyrights.credits": {
-                    "type": "string",
-                    "default": "",
-                    "markdownDescription": "Other people who constantly contribute to perfecting your code.\r\nMultiple data separated by comma `,`.\r\nLeave empty for none or `-`  to leave a label and space for manual editing."
-                },
-                "versionBoss.copyrights.otherInfos": {
-                    "type": "string",
-                    "default": "",
-                    "markdownDescription": "Other generic infos.\r\nMultiple data separated by comma `,`.\r\nLeave empty for none or `-` to leave a label and space for manual editing."
-                },
-                "versionBoss.copyrights.notes": {
-                    "type": "string",
-                    "default": "",
-                    "markdownDescription": "Author Notes.\r\nMultiple data separated by comma `,`.\r\nLeave empty for none or `-` to leave a label and space for manual editing."
-                }
-            }
-        }
-    },
-    "scripts": {
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "node ./node_modules/vscode/bin/test"
-    },
-    "devDependencies": {
-        "@types/mocha": "^7.0.2",
-        "@types/node": "^13.9.1",
-        "eslint": "^6.8.0",
-        "typescript": "^3.8.3",
-        "vscode": "^1.1.36"
-    }
+	"name": "version-boss",
+	"displayName": "Version Boss & MonsterDoc",
+	"icon": "_gfx/version-boss-icon.png",
+	"description": "Versioning and Documenting like a Boss - Semantic Versioner and PHPDoc / JSDoc / TypeDoc Document Blocks Generator and  [Todo+  by Fabio Spampinato](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-todo-plus) Keywords for Scripting Languages: insert and update Version of file and of classes and functions (according to http://semver.org directives), insert Copyrights, Distribution License and generate Documentation for PHP / JavaScript and TypeScript Languages and add Todo+ Keywords using shortcuts.",
+	"version": "1.4.64",
+	"publisher": "nicola-granata",
+	"license": "BSD-3-Clause-Attribution",
+	"author": {
+		"name": "Nicola Granata",
+		"email": "vscode.extensions@daemoncms.com",
+		"url": "https://github.com/nicolagranata"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/nicolagranata/vscode-extension-version-boss.git"
+	},
+	"keywords": [
+		"semver",
+		"semantic versioner",
+		"versioning",
+		"documentation",
+		"documentor",
+		"PHPDoc",
+		"JSDoc",
+		"TypeDoc",
+		"Todo+ Labeling",
+		"dockblock",
+		"licensing",
+		"copyrighting",
+		"semver.org"
+	],
+	"resolutions": {
+		"minimist": "^1.2.5"
+	},
+	"engines": {
+		"vscode": "^1.42.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.versionboss-step-patch-up-autosave",
+		"onCommand:extension.versionboss-step-chanver-up",
+		"onCommand:extension.versionboss-step-channel-up",
+		"onCommand:extension.versionboss-step-patch-up",
+		"onCommand:extension.versionboss-step-minor-up",
+		"onCommand:extension.versionboss-step-major-up",
+		"onCommand:extension.versionboss-step-chanver-down",
+		"onCommand:extension.versionboss-step-channel-down",
+		"onCommand:extension.versionboss-step-patch-down",
+		"onCommand:extension.versionboss-step-minor-down",
+		"onCommand:extension.versionboss-step-major-down",
+		"onCommand:extension.versionboss-step-version-align",
+		"onCommand:extension.versionboss-boundversion",
+		"onCommand:extension.versionboss-nakedversion",
+		"onCommand:extension.versionboss-bannedversion",
+		"onCommand:extension.versionboss-copyrights",
+		"onCommand:extension.versionboss-licenses",
+		"onCommand:extension.versionboss-getinfosarray",
+		"onCommand:extension.versionboss-monsterdoc",
+		"onCommand:extension.versionboss-monsterdoc-alternative"
+	],
+	"main": "./extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.versionboss-step-patch-up-autosave",
+				"title": "Version Boss - Patch - insert or step-up and save (autosave ever enabled)",
+				"category": "Version Boss"
+			},
+			{
+				"command": "extension.versionboss-step-patch-up",
+				"title": "Version Boss - Patch - insert or step-up",
+				"category": "Version Boss"
+			},
+			{
+				"command": "extension.versionboss-step-minor-up",
+				"title": "Version Boss - Minor - insert or step-up",
+				"category": "Version Boss"
+			},
+			{
+				"command": "extension.versionboss-step-major-up",
+				"title": "Version Boss - Major - insert or step-up",
+				"category": "Version Boss"
+			},
+			{
+				"command": "extension.versionboss-step-channel-up",
+				"title": "Version Boss - Channel - insert or step-up",
+				"category": "Version Boss"
+			},
+			{
+				"command": "extension.versionboss-step-chanver-up",
+				"title": "Version Boss - Channel Ver. - insert or step-up",
+				"category": "Version Boss"
+			},
+			{
+				"command": "extension.versionboss-step-patch-down",
+				"title": "Version Boss - Patch - insert or step-down",
+				"category": "Version Boss"
+			},
+			{
+				"command": "extension.versionboss-step-minor-down",
+				"title": "Version Boss - Minor - insert or step-down",
+				"category": "Version Boss"
+			},
+			{
+				"command": "extension.versionboss-step-major-down",
+				"title": "Version Boss - Major - insert or step-down",
+				"category": "Version Boss"
+			},
+			{
+				"command": "extension.versionboss-step-channel-down",
+				"title": "Version Boss - Channel - insert or step-down",
+				"category": "Version Boss"
+			},
+			{
+				"command": "extension.versionboss-step-chanver-down",
+				"title": "Version Boss - Channel Ver. - insert or step-down",
+				"category": "Version Boss"
+			},
+			{
+				"command": "extension.versionboss-step-version-align",
+				"title": "Version Boss - Align all version numbers to max version number without step-up/down",
+				"category": "Version Boss"
+			},
+			{
+				"command": "extension.versionboss-boundversion",
+				"title": "Version Boss - Force insert version, with boundaries, at caret position",
+				"category": "Version Boss"
+			},
+			{
+				"command": "extension.versionboss-nakedversion",
+				"title": "Version Boss - Force insert version, without boundaries, at caret position",
+				"category": "Version Boss"
+			},
+			{
+				"command": "extension.versionboss-bannedversion",
+				"title": "Version Boss - Forces insert version, without boundaries, in the position of approach with the main ban of char (prevent the global passage up / down)",
+				"category": "Version Boss"
+			},
+			{
+				"command": "extension.versionboss-copyrights",
+				"title": "Version Boss - Copyrights - insert or update",
+				"category": "Version Boss"
+			},
+			{
+				"command": "extension.versionboss-licenses",
+				"title": "Version Boss - License - insert or update",
+				"category": "Version Boss"
+			},
+			{
+				"command": "extension.versionboss-getinfosarray",
+				"title": "Version Boss - Insert Copyrights Informations Array",
+				"category": "Version Boss"
+			},
+			{
+				"command": "extension.versionboss-monsterdoc",
+				"title": "MonsterDoc - Document this!",
+				"category": "MonsterDoc"
+			},
+			{
+				"command": "extension.versionboss-monsterdoc-alternative",
+				"title": "MonsterDoc - Generate Class / Function / Variables Documentation PHPDoc / JSDoc / TypeDoc (DocBlock inside) and Todo+ Comment (default @fixme)",
+				"category": "MonsterDoc"
+			}
+		],
+		"menus": {
+			"commandPalette": [
+				{
+					"command": "extension.versionboss-step-major-up",
+					"group": "Version Boss",
+					"when": "editorTextFocus"
+				},
+				{
+					"command": "extension.versionboss-step-minor-up",
+					"group": "Version Boss",
+					"when": "editorTextFocus"
+				},
+				{
+					"command": "extension.versionboss-step-patch-up",
+					"group": "Version Boss",
+					"when": "editorTextFocus"
+				},
+				{
+					"command": "extension.versionboss-step-channel-up",
+					"group": "Version Boss",
+					"when": "editorTextFocus"
+				},
+				{
+					"command": "extension.versionboss-step-chanver-up",
+					"group": "Version Boss",
+					"when": "editorTextFocus"
+				},
+				{
+					"command": "extension.versionboss-step-version-align",
+					"group": "Version Boss",
+					"when": "editorTextFocus"
+				},
+				{
+					"command": "extension.versionboss-boundversion",
+					"group": "Version Boss",
+					"when": "editorTextFocus"
+				},
+				{
+					"command": "extension.versionboss-nakedversion",
+					"group": "Version Boss",
+					"when": "editorTextFocus"
+				},
+				{
+					"command": "extension.versionboss-bannedversion",
+					"group": "Version Boss",
+					"when": "editorTextFocus"
+				},
+				{
+					"command": "extension.versionboss-copyrights",
+					"group": "Version Boss",
+					"when": "editorTextFocus"
+				},
+				{
+					"command": "extension.versionboss-licenses",
+					"group": "Version Boss",
+					"when": "editorTextFocus"
+				},
+				{
+					"command": "extension.versionboss-getinfosarray",
+					"group": "Version Boss",
+					"when": "editorTextFocus"
+				},
+				{
+					"command": "extension.versionboss-monsterdoc",
+					"group": "MonsterDoc",
+					"when": "editorTextFocus"
+				},
+				{
+					"command": "extension.versionboss-monsterdoc-alternative",
+					"group": "MonsterDoc",
+					"when": "editorTextFocus"
+				}
+			],
+			"editor/context": [
+				{
+					"command": "extension.versionboss-step-major-up",
+					"group": "Version Boss",
+					"when": "editorTextFocus"
+				},
+				{
+					"command": "extension.versionboss-step-minor-up",
+					"group": "Version Boss",
+					"when": "editorTextFocus"
+				},
+				{
+					"command": "extension.versionboss-step-patch-up",
+					"group": "Version Boss",
+					"when": "editorTextFocus"
+				},
+				{
+					"command": "extension.versionboss-step-channel-up",
+					"group": "Version Boss",
+					"when": "editorTextFocus"
+				},
+				{
+					"command": "extension.versionboss-step-chanver-up",
+					"group": "Version Boss",
+					"when": "editorTextFocus"
+				},
+				{
+					"command": "extension.versionboss-copyrights",
+					"group": "Version Boss",
+					"when": "editorTextFocus"
+				},
+				{
+					"command": "extension.versionboss-licenses",
+					"group": "Version Boss",
+					"when": "editorTextFocus"
+				},
+				{
+					"command": "extension.versionboss-getinfosarray",
+					"group": "Version Boss",
+					"when": "editorTextFocus"
+				},
+				{
+					"command": "extension.versionboss-monsterdoc",
+					"group": "MonsterDoc",
+					"when": "editorTextFocus"
+				}
+			]
+		},
+		"keybindings": [
+			{
+				"command": "extension.versionboss-step-major-up",
+				"key": "ctrl+alt+shift+Q",
+				"mac": "ctrl+option+shift+Q",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "extension.versionboss-step-minor-up",
+				"key": "ctrl+alt+shift+W",
+				"mac": "ctrl+option+shift+W",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "extension.versionboss-step-patch-up-autosave",
+				"key": "ctrl+alt+shift+S",
+				"mac": "ctrl+option+shift+S",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "extension.versionboss-step-patch-up",
+				"key": "ctrl+alt+shift+E",
+				"mac": "ctrl+option+shift+E",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "extension.versionboss-step-channel-up",
+				"key": "ctrl+alt+shift+R",
+				"mac": "ctrl+option+shift+R",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "extension.versionboss-step-chanver-up",
+				"key": "ctrl+alt+shift+T",
+				"mac": "ctrl+option+shift+T",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "extension.versionboss-step-major-down",
+				"key": "ctrl+alt+shift+Y",
+				"mac": "ctrl+option+shift+Y",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "extension.versionboss-step-minor-down",
+				"key": "ctrl+alt+shift+U",
+				"mac": "ctrl+option+shift+U",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "extension.versionboss-step-patch-down",
+				"key": "ctrl+alt+shift+I",
+				"mac": "ctrl+option+shift+I",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "extension.versionboss-step-channel-down",
+				"key": "ctrl+alt+shift+O",
+				"mac": "ctrl+option+shift+O",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "extension.versionboss-step-chanver-down",
+				"key": "ctrl+alt+shift+P",
+				"mac": "ctrl+option+shift+P",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "extension.versionboss-step-version-align",
+				"key": "ctrl+alt+shift+A",
+				"mac": "ctrl+option+shift+A",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "extension.versionboss-boundversion",
+				"key": "ctrl+alt+shift+B",
+				"mac": "ctrl+option+shift+B",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "extension.versionboss-nakedversion",
+				"key": "ctrl+alt+shift+V",
+				"mac": "ctrl+option+shift+V",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "extension.versionboss-bannedversion",
+				"key": "ctrl+alt+shift+N",
+				"mac": "ctrl+option+shift+N",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "extension.versionboss-copyrights",
+				"key": "ctrl+alt+shift+C",
+				"mac": "ctrl+option+shift+C",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "extension.versionboss-licenses",
+				"key": "ctrl+alt+shift+L",
+				"mac": "ctrl+option+shift+L",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "extension.versionboss-getinfosarray",
+				"key": "ctrl+alt+shift+J",
+				"mac": "ctrl+option+shift+J",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "extension.versionboss-monsterdoc",
+				"key": "ctrl+alt+shift+D",
+				"mac": "ctrl+option+shift+D",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "extension.versionboss-monsterdoc-alternative",
+				"key": "ctrl+alt+shift+F",
+				"mac": "ctrl+option+shift+F",
+				"when": "editorTextFocus"
+			}
+		],
+		"configuration": {
+			"type": "object",
+			"properties": {
+				"versionBoss.monsterdoc.monsterdocUseSmartTabbing": {
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "For a correct docblock formatting, MonsterDoc pre-computes trailing-spaces after keywords (e.g. `@param`): if *Smart Tabbing* is set to `true`, MonsterDoc use only default and customized keywords to determine the maximum length for a keyword with trailing spaces string to optimize space between the keyword and the related parameter (e.g. `* @param` . . . `boolean`), otherwise use all registered keywords. In the latter case, the space between the keyword and the relative parameter can be greater."
+				},
+				"versionBoss.monsterdoc.insertAllAuthorsInDocumentation": {
+					"type": "boolean",
+					"default": false,
+					"markdownDescription": "Insert `All Authors` listed in **Version Boss > Copyrights: Authors Names and Emails**. if `false`, only `Main Author` will be entered."
+				},
+				"versionBoss.monsterdoc.docblockInsideFunctionsAsDefault": {
+					"type": "boolean",
+					"default": false,
+					"markdownDescription": "Insert dockblock string outside (`false` - default) or inside (`true`) the body of the classes/functions with default shortcut and inside with alternative shortcut for MonsterDoc. If is set to `true`, default shortcut and alternative shortcut are inverted. Set to `true`, is a non-standard option, but it is useful when writing the code, in order to keep information about the function well anchored to the function itself."
+				},
+				"versionBoss.monsterdoc.docblockGroupedForMultipleVariablesSelectionAsDefault": {
+					"type": "boolean",
+					"default": false,
+					"markdownDescription": "When you select multiple variables in multiple rows, each variable is commented just above here. With this value set to `true` all selected variables are commented in an single docblock above selection as default. If is set to `true`, default shortcut and alternative shortcut are inverted."
+				},
+				"versionBoss.monsterdoc.addEmptyRowBetweenSections": {
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "Add an empty row between Monsterdoc's sections."
+				},
+				"versionBoss.monsterdoc.addAuthorsInfos": {
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "Add `@author` in docblock string followed by `Main Author` Name and E-mail address stored in **Version Boss** settings.\r\n\r\n`Main Author` is the first element listed in **Authors Names and Emails**."
+				},
+				"versionBoss.monsterdoc.addCopyrightsInfos": {
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "Add `@copyrights` in docblock string followed by Copyrights Informations stored in **Version Boss** settings."
+				},
+				"versionBoss.monsterdoc.addClassesAndFunctionsAccess": {
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "Add `@access` in docblock string. If not is possible to determine, by declaration the access type of function or class, default value for `@access` is `public`."
+				},
+				"versionBoss.monsterdoc.addClassesAndFunctionsVersion": {
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "Add `@version` in docblock string. Version are set to the default version (e.g. `0.0.0`) followed by local date in ISO format (e.g. `2020-03-20T16:11:23.256Z`)."
+				},
+				"versionBoss.monsterdoc.addClassesAndFunctionsInlineCodeExample": {
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "Add `inline code example` in docblock string."
+				},
+				"versionBoss.monsterdoc.addClassesAndFunctionsExample": {
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "Add first `@example` in docblock string."
+				},
+				"versionBoss.monsterdoc.classesAndFunctionsExamplesPath": {
+					"type": "string",
+					"minLength": 0,
+					"default": "_documentation/",
+					"markdownDescription": "Path for Monsterdoc examples (may be `url`, `absolute` or `relative` root path)."
+				},
+				"versionBoss.monsterdoc.classesAndFunctionsExamplesFileExtension": {
+					"type": "string",
+					"enum": [
+						"md",
+						"html",
+						"txt",
+						"php"
+					],
+					"default": "md",
+					"markdownDescription": "Extension for Monsterdoc examples. Name of file will be determined by function name."
+				},
+				"versionBoss.monsterdoc.monsterdocBlocksOrder": {
+					"type": "string",
+					"enum": [
+						"Version, Params, Additional Keywords, Example, Copyrights",
+						"Copyrights, Version, Params, Additional Keywords, Example"
+					],
+					"default": "Version, Params, Additional Keywords, Example, Copyrights",
+					"markdownDescription": "Order of Blocks in PHPDoc / JSDoc / TypeDoc."
+				},
+				"versionBoss.monsterdoc.keywordsToAddForFunctions": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"pattern": "\\@([a-z]{2,})"
+					},
+					"default": [],
+					"markdownDescription": "Append additional and custom keywords in docblock string for Functions."
+				},
+				"versionBoss.monsterdoc.keywordsToAddForClasses": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"pattern": "\\@([a-z]{2,})"
+					},
+					"default": [],
+					"markdownDescription": "Append additional and custom keywords in docblock string for Classes."
+				},
+				"versionBoss.monsterdoc.keywordsSuggestionsExclusionsForPHPDoc": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"pattern": "\\@([a-z]{2,})"
+					},
+					"default": [
+						"@abstract",
+						"@deprecated",
+						"@final",
+						"@filesource",
+						"@ignore",
+						"@internal",
+						"@link",
+						"@method",
+						"@category",
+						"@staticvar",
+						"@subpackage",
+						"@filesource",
+						"@inheritdoc",
+						"@source",
+						"@toc",
+						"@tutorial",
+						"@uses"
+					],
+					"markdownDescription": "Insert keywords to **remove** from Suggestions Provider for PHPDoc.\r\n\r\n> Note 1: some keywords are used for the default dockblock generation and, even if present in the exclusion list, they will not be removed.\r\n\r\n> Note 2: some keywords may be overwritten by another ***Doc's keywords and may be present in the list but, when filtering by language, they will not be displayed."
+				},
+				"versionBoss.monsterdoc.keywordsSuggestionsExclusionsForJSDoc": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"pattern": "\\@([a-z]{2,})"
+					},
+					"default": [
+						"@alias",
+						"@access",
+						"@borrows",
+						"@async",
+						"@augments",
+						"@abstract",
+						"@callback",
+						"@constant",
+						"@constructs",
+						"@deprecated",
+						"@enum",
+						"@exports",
+						"@external",
+						"@fires",
+						"@generator",
+						"@hideconstructor",
+						"@implements",
+						"@instance",
+						"@interface",
+						"@inheritdoc",
+						"@inner",
+						"@lends",
+						"@listens",
+						"@member",
+						"@memberof",
+						"@mixes",
+						"@mixin",
+						"@module",
+						"@namespace",
+						"@override",
+						"@private",
+						"@property",
+						"@protected",
+						"@public",
+						"@readonly",
+						"@requires",
+						"@see",
+						"@since",
+						"@static",
+						"@summary",
+						"@this",
+						"@throws",
+						"@tutorial",
+						"@type",
+						"@typedef",
+						"@variation",
+						"@yields"
+					],
+					"markdownDescription": "Insert keywords to **remove** from Suggestions Provider for JSDoc.\r\n\r\n> Note: some keywords are used for the default dockblock generation and, even if present in the exclusion list, they will not be removed.\r\n\r\n> Note 2: some keywords may be overwritten by another ***Doc's keywords and may be present in the list but, when filtering by language, they will not be displayed."
+				},
+				"versionBoss.monsterdoc.keywordsSuggestionsExclusionsForTYPEDoc": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"pattern": "\\@([a-z]{2,})"
+					},
+					"default": [],
+					"markdownDescription": "Insert keywords to **remove** from Suggestions Provider for TypeDoc.\r\n\r\n> Note: some keywords are used for the default dockblock generation and, even if present in the exclusion list, they will not be removed.\r\n\r\n> Note 2: some keywords may be overwritten by another ***Doc's keywords and may be present in the list but, when filtering by language, they will not be displayed."
+				},
+				"versionBoss.monsterdoc.keywordsSuggestionsForTodoPlus": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"pattern": "(\\#|\\@|\\§)([a-z]{2,})"
+					},
+					"default": [
+						"#todo",
+						"#fixme",
+						"#fix",
+						"#ugly",
+						"#hack",
+						"#note",
+						"#idea",
+						"#review",
+						"#debug",
+						"#optimize"
+					],
+					"markdownDescription": "[Todo+ by Fabio Spampinato](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-todo-plus) keywords (follow the link for more informations).\r\n\r\n> Tip 1: the first character (wich is not visible in the suggestion list) makes the order in list:\r\n\r\n1. if you use `@`, **Todo+** Keywords are sorted together with PHPDoc / JSDoc / TypeDoc keywords;\r\n\r\n1. if you use `#`,  **Todo+** Keywords are placed at the top of the list; \r\n\r\n1. if you use `§`,  **Todo+** Keywords are placed at the bottom of the list;\r\n\r\n> Tip 2: the first two keywords (by default `todo` and `fixme`) are used in quick dockblock creation on an empty row the second time you press the hotkey.\r\n\r\nSee `READMS.md` for more informations.\r\n\r\n> Tip 3: if you wanto to add more keywords, remind to add same keywords in **Todo+** Settings (some RegEx fields)."
+				},
+				"versionBoss.monsterdoc.setVariablesPrefixesAndSuffixes": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"pattern": "([a-z0-9\\_]+)([\t ]*)\\=([\t ]*)([a-z0-9\\_]+)([\\,]*[a-z0-9\\_]*)"
+					},
+					"default": [
+						"boolean=bool,boolean,is_",
+						"string=str,string,json",
+						"number=num,number",
+						"integer=int,integer",
+						"float=flt,float",
+						"array=ra,array",
+						"object=obj,object"
+					],
+					"markdownDescription": "PHPDoc / JSDoc / TypeDoc Variable Prefixes / Suffixes for easy recognition of type by name of variable  when you not (or can not) declare type of variables or related default value (from which to take the type in PHP < 7) in function declaration.\r\n\r\nPrefixes must be placed at the begin (e.g. `bool_`is_open) and suffixes at the end of variable name (e.g. person`_array`).\r\n\r\n> `Tip 1`: to determine if string is prefix or suffix use `_` (underscore) after string for prefix and before string for suffix. If you use `_` at begin and at end (e.g. `_bool_`), system search in variable name, but not at begin and not at the end of variable name.\r\n\r\n> `Tip 2`: if you don't use `_` (underscore) in declaration, system try at begin, at middle and at end of string adding `_` (underscore) in search string:\r\n\r\n- e.g. if you write \"`boolean=bool,boolean`\", system search for `bool_`, `_bool`, `_bool_`, `boolean_`, [...]\r\n\r\nFollow the examples below (1st is the pattern).\r\n\r\n1. `[type or custom type] = [suffix_or_prefix_1, suffix_or_prefix_2, ..., suffix_or_prefix_n]`;\r\n\r\n1. `boolean = bool_, _bool` - `array = _ra, arr_`"
+				},
+				"versionBoss.monsterdoc.setVariablesTypesMonsterdocTemplates": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"pattern": "([a-z0-9\\_]+)([\t ]*)\\=(.*)"
+					},
+					"default": [
+						"boolean=true: _description_ | false: _description_",
+						"string=\"example\" - _description_",
+						"any=\"any type - _description_",
+						"number=min: 0 | max: 100 - _description_ ",
+						"integer=min: 0 | max: 100 - _description_ ",
+						"float=min: 0.0 | max: 1.0 - _description_ ",
+						"double=min: 0.0 | max: 1.0 - _description_ ",
+						"array=[\"a\", \"b\"] - _description_",
+						"object={\"a\": 1, \"b\": 2} - _description_",
+						"enum={\"a\": 1, \"b\": 2} - _description_",
+						"tuple=[string, number] - _description_",
+						"json=\"{'a': 1, 'b': 2}\" - _description_"
+					],
+					"markdownDescription": "PHPDoc / JSDoc / TypeDoc Variable templates for Monsterdoc. These templates are added after `@param` (e.g. `@ param type variablename : [template for variable documentation]`).\r\n\r\nTemplates are first seearched by type and overryded if system find a template for prefix or suffix (e.g. `function somefunc(somevar_json){...}` » variable name `somevar_json` » type `string` but, by default settings, there is a template for `json` prefix/suffix » system use template for `json` prefix/suffix in Monsterdoc."
+				},
+				"versionBoss.settings.setVariableNameForCopyrightsInfosArray": {
+					"type": "string",
+					"minLength": 0,
+					"default": "semverCopyrightsInfosObj",
+					"markdownDescription": "Set the name of the default variable to insert the Copyrights Infos Array  into the code.\r\n\r\n> `PHP Language Tip`: do not use the prefix **`$`**: it will be added automatically based on the programming language of the file (if inserted, will be ignored in PHP files but not in others programming languages). You can use an array item (e.g. `glob_env[\"copyrights_infos\"]`).\r\n\r\n`Warning`: because of complexity of programming languages, this field not use pattern matching to check malformed typing. Please, pay attention!"
+				},
+				"versionBoss.settings.addAppNameVariableInCopyrightsInfosArray": {
+					"type": "string",
+					"minLength": 0,
+					"default": "appName",
+					"markdownDescription": "If not empty, adds App Name Variable in Copyrights Infos Array and values it with current Filename (dynamic)."
+				},
+				"versionBoss.settings.addFileNameVariableInCopyrightsInfosArray": {
+					"type": "string",
+					"minLength": 0,
+					"default": "fileName",
+					"markdownDescription": "If not empty, add current Filename in Copyrights Infos Array."
+				},
+				"versionBoss.settings.fileNamePhpVariableInCopyrightsInfosArray": {
+					"type": "string",
+					"enum": [
+						"__FILE__",
+						"basename(__FILE__)",
+						"pathinfo(__FILE__)",
+						"dynamic",
+						"static"
+					],
+					"default": "__FILE__",
+					"markdownDescription": "In PHP is possible to get filename using code.\r\n\r\n> `Tip`: `static` adds static filename (no changes when uptdate file version), `dynamic` use *Version Boss* features to change filename when you update file version. Other methods uses PHP code. "
+				},
+				"versionBoss.settings.authorNameVariableInCopyrightsInfosArray": {
+					"type": "string",
+					"minLength": 0,
+					"default": "authorName",
+					"markdownDescription": "If not empty, adds main Author Name Variable in Copyrights Infos Array and values it with current first name in `Authors Names and Emails`."
+				},
+				"versionBoss.settings.authorEmailVariableInCopyrightsInfosArray": {
+					"type": "string",
+					"minLength": 0,
+					"default": "authorEmail",
+					"markdownDescription": "If not empty, adds main Author E-mail Variable in Copyrights Infos Array and values it with current first author email in `Authors Names and Emails`."
+				},
+				"versionBoss.settings.addFileVersionVariableInCopyrightsInfosArray": {
+					"type": "string",
+					"minLength": 0,
+					"default": "fileVersion",
+					"markdownDescription": "If not empty, add current File Version in Copyrights Infos Array."
+				},
+				"versionBoss.settings.checkIfVariableNameForCopyrightsInfosArrayExists": {
+					"type": "boolean",
+					"default": false,
+					"markdownDescription": "Check if the Variable Name For Copyrights Storage already exists and prevents writing to avoid overrides.\r\n\r\nWhen set to `false`, overrides are permitted (naturally you could change the variable name after insert)."
+				},
+				"versionBoss.settings.setDefaultQuotingCharForGeneratedCode": {
+					"type": "string",
+					"enum": [
+						"\"",
+						"'",
+						"`"
+					],
+					"default": "\"",
+					"markdownDescription": "Set the default quoting char to insert generated code into your code (e.g. Copyrights Infos Array)."
+				},
+				"versionBoss.settings.versionUseChannelsStrictMatch": {
+					"type": "boolean",
+					"default": false,
+					"markdownDescription": "Enable the strict matching of channel part of semver string.\r\n\r\n- `true`: only part of semver string matching the string of channels availabes in *Version Boss » Settings » Set Channels List* is recognized and updated\r\n\r\n- `false`: any channel string in semver full pattern is recognized and fixed/updated (e.g. `<!#FV> 1.25.0-roadrunner.1 </#FV>` -> `<!#FV> 1.25.0-alpha.1</#FV>`)"
+				},
+				"versionBoss.settings.versionUpdateOnPatternMatch": {
+					"type": "string",
+					"default": "False",
+					"enum": [
+						"False",
+						"True",
+						"Only First Occurrence"
+					],
+					"minLength": 1,
+					"markdownDescription": "Enable Version Update even without a boundaries. Version string must be enclosed in double-quote or single-quote.\r\n\r\n`Warning`: this may conflict with your code if you use patterns similar to `Major.Minor.Patch [-Channel [.ChannelVersion]]` (e.g. `\"1.0.0-alpha.2\"`) for different purposes than file versioning. You can insert a symbol before first digit to prevent update of a specific matching string (eg. `1.23.45` -> `#1.23.45`).\r\n\r\nUpdate only first occurrence of semver string enclosed in pair of double-quote or single-quote (e.g. \"`1.23.45`\") `in page` or `in line`.\r\n\r\nOn update semver if line where is caret position not match semver pattern, the first occurrence in page and all instances in boundaries (e.g. `<!#FV> 1.25.0-roadrunner.1 </#FV>`) are updated.\r\n\r\nOn update semver, if line where is caret position match semver pattern:\r\n\r\n1. `once`: the occurrence is updated; \r\n\r\n2. `more than once`: only first occurrence **after caret position** is updated.\r\n\r\n3. `more than once` but caret position after lastest match: to avoid unwanted update, no one occurrence is updated."
+				},
+				"versionBoss.settings.charForBannedVersion": {
+					"type": "string",
+					"default": "#",
+					"enum": [
+						"#",
+						"@",
+						"§",
+						"*"
+					],
+					"minLength": 1,
+					"markdownDescription": "Char for banned version for Changelog or for Function versioning (e.g. `#` -> `#1.23.45`)."
+				},
+				"versionBoss.settings.autoSaveAfterStepUp": {
+					"type": "boolean",
+					"default": false,
+					"markdownDescription": "Save file after each step up."
+				},
+				"versionBoss.settings.insertQuotesWithFileVersion": {
+					"type": "boolean",
+					"default": false,
+					"markdownDescription": "Insert File Version (without boundaries) with o without quotes."
+				},
+				"versionBoss.settings.setFirstVersion": {
+					"type": "string",
+					"default": "0.0.0",
+					"minLength": 5,
+					"pattern": "^(([0-9]+)\\.([0-9]+)\\.([0-9]+)(|\\-([a-z]{1,16}(|\\.([1-9]{1}([0-9]*))))))$",
+					"markdownDescription": "Set Fisrt version to use when you start versioning `Major.Minor.Patch[-(any Channel[.(any ChannelVersion > 0)]]`\r\n\r\ne.g.: `1.0.0`,`0.0.0`, `1.0.0-beta.1`."
+				},
+				"versionBoss.settings.setChannelsList": {
+					"type": "string",
+					"default": "alpha, beta, perpBeta, openBeta, closedBeta, RC, RTM, GA, RTW",
+					"minLength": 1,
+					"pattern": "^(([a-zA-Z\\_]+)(,(\\s*)|$))+$",
+					"markdownDescription": "Channels (except `Release` wich no have any abbreviation in semver.org directives - multiple data separated by comma `,`).\r\n\r\ne.g. `alpha`, `beta`,[`...`], `RC`,`RTM`,`GA`, `RTW`.\r\n\r\n`Warning 1`: only words with a-z chars and comma are valid values: the other symbols will be ignored."
+				},
+				"versionBoss.settings.showInformationMessage": {
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "Show Information Message when action is done."
+				},
+				"versionBoss.settings.showWarningAndErrorMessage": {
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "Show Warning and Errors Messages when action could not be done."
+				},
+				"versionBoss.settings.resetChildsOnStepUp": {
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "Set `0` to childs when step-up Minor or Major version.\r\n\r\ne.g. `true`:\r\n1. Step-up Major = `1.23.45` -> **`2.0.0`**;\r\n2. Step-up Minor = `1.23.45` -> `1.`**`24.0`**;\r\n\r\ne.g. `false`:\r\n1. Step-up Major = `1.23.45` -> **`2`**`.23.45`;\r\n2. Step-up Minor = `1.23.45` -> `1.`**`24`**`.45`."
+				},
+				"versionBoss.settings.setChannelToAlphaOnMajorVersionStepUp": {
+					"type": "boolean",
+					"default": false,
+					"markdownDescription": "Set channel to `alpha` when step-up Major version.\r\n\r\ne.g. `true`:\r\n1. Step-up Major = `1.23.45-RC.3` -> **`2.0.0-alpha`**;\r\n\r\ne.g. `false` :\r\n1. Step-up Major = `1.23.45-RC.3` -> **`2.0.0`** (with `Reset Childs On Step Up ` set to `true`);\r\n2. Step-up Major = `1.23.45-RC.3` -> **`2.0.0-RC.3`** (with `Reset Childs On Step Up ` set to `false`)."
+				},
+				"versionBoss.settings.nonStandard.stepUpChannelOnChannelVersionLimitReach": {
+					"type": "integer",
+					"default": 0,
+					"minimum": 0,
+					"markdownDescription": "`Warning! - is not a standard`: Step Up Channel when Channel Version reach this limit (`0` for no step-up).\r\n\r\ne.g. Version limit: `3`: Steping up Channel Version from `1.23.45-beta.3` to `1.23.45-beta.4` make  **`1.23.45-RC`**."
+				},
+				"versionBoss.settings.nonStandard.stepUpMinorVersionOnPatchVersionLimitReach": {
+					"type": "integer",
+					"default": 0,
+					"minimum": 0,
+					"markdownDescription": "`Warning! - is not a standard`: Step Up Minor Version when Patch Version reach this limit (`0` for no step-up).\r\n\r\ne.g. Version limit: `99`: Steping up Patch Version from `1.23.99` to `1.23.100` make  **`1.24.00`**."
+				},
+				"versionBoss.settings.nonStandard.stepUpMajorVersionOnMinorVersionLimitReach": {
+					"type": "integer",
+					"default": 0,
+					"minimum": 0,
+					"markdownDescription": "`Warning! - is not a standard`: Step Up Major Version when Minor Version reach this limit (`0` for no step-up).\r\n\r\ne.g. Version limit: `99`: Steping up Patch Version from `1.99.45` to `1.100.45` make  **`2.00.00`**."
+				},
+				"versionBoss.boundaries.tagEnclosers": {
+					"type": "string",
+					"default": "<,>",
+					"enum": [
+						"<,>",
+						"[,]",
+						"{,}"
+					],
+					"markdownDescription": "Chars which enclose the boundary.\r\n\r\ne.g. `<` and `>` in `<!#FV>`1.23.45`</#FV>`."
+				},
+				"versionBoss.boundaries.boundaryIdentityChar": {
+					"type": "string",
+					"enum": [
+						"#",
+						"^",
+						"_",
+						"@",
+						"§",
+						"-"
+					],
+					"default": "#",
+					"markdownDescription": "Symbol which set the identity of open/close boundary (e.g. `#` in `<!#FV>`)."
+				},
+				"versionBoss.boundaries.boundaryOpenChar": {
+					"type": "string",
+					"enum": [
+						"!",
+						"#",
+						"^"
+					],
+					"default": "!",
+					"markdownDescription": "Symbol which set open boundary (set to `not equal` to Boundary Close Char, or it will be substituted with another one, e.g. `!` in  `<!#FV>`)."
+				},
+				"versionBoss.boundaries.boundaryCloseChar": {
+					"type": "string",
+					"enum": [
+						"/",
+						"@",
+						"§"
+					],
+					"default": "/",
+					"markdownDescription": "Symbol which set close boundary (set to `not equal` to Boundary Open Char, or it will be substituted with another one, e.g. `/` in `</#FV>`)."
+				},
+				"versionBoss.boundaries.dataStringIDs.fileName": {
+					"type": "string",
+					"default": "FN",
+					"minLength": 1,
+					"maxLength": 16,
+					"markdownDescription": "String to recognize and update or insert Filename boundaries and values."
+				},
+				"versionBoss.boundaries.dataStringIDs.fileBirth": {
+					"type": "string",
+					"default": "FB",
+					"minLength": 1,
+					"maxLength": 16,
+					"markdownDescription": "String to recognize and update or insert File Birth boundaries and values."
+				},
+				"versionBoss.boundaries.dataStringIDs.fileVersion": {
+					"type": "string",
+					"default": "FV",
+					"minLength": 1,
+					"maxLength": 16,
+					"markdownDescription": "String to recognize and update or insert File Version boundaries and values."
+				},
+				"versionBoss.boundaries.dataStringIDs.fileModificationTime": {
+					"type": "string",
+					"default": "FT",
+					"minLength": 1,
+					"maxLength": 16,
+					"markdownDescription": "String to recognize and update or insert File Modification Time boundaries and values."
+				},
+				"versionBoss.boundaries.dataStringIDs.copyrights": {
+					"type": "string",
+					"default": "CR",
+					"minLength": 1,
+					"maxLength": 16,
+					"markdownDescription": "String to recognize or insert File Copyrights boundaries and values.\r\n\r\n***Note***:\r\n\r\nfor preserve data manually inserted in Copyrights block, system prevent to update it accidentally by pressing shortcuts. You have to delete the Copyrigths block to inserert new data (at least, if you want to leave old data for your convenience, delete only the boundaries tags <!#CR#!> and </#CR#/>). This is not valid for all other infos (even in Copirights block) wich is enclosed in boundaries (e.g. File Version, File Mod Time are ever updated,  Licensing only on pressing shortcuts)."
+				},
+				"versionBoss.boundaries.dataStringIDs.licenses": {
+					"type": "string",
+					"default": "LT",
+					"minLength": 1,
+					"maxLength": 16,
+					"markdownDescription": "String to recognize and update or insert File License boundaries and values."
+				},
+				"versionBoss.boundaries.dataStringIDs.licensesUrl": {
+					"type": "string",
+					"default": "LU",
+					"minLength": 1,
+					"maxLength": 16,
+					"markdownDescription": "String to recognize and update or insert File License URL boundaries and values."
+				},
+				"versionBoss.boundaries.dataStringIDs.licensesClarification": {
+					"type": "string",
+					"default": "LD",
+					"minLength": 1,
+					"maxLength": 16,
+					"markdownDescription": "String to recognize and update or insert File License Description boundaries and values."
+				},
+				"versionBoss.settings.copyrights.insertExtensionAuthorCredits": {
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "If you want, can include credits of the author of this extension: it will occupy only one row at bottom of yours copyrights informations."
+				},
+				"versionBoss.settings.copyrights.rowMaxLength": {
+					"type": "integer",
+					"minimum": 40,
+					"maximum": 160,
+					"default": 120,
+					"markdownDescription": "Length of the rows of Copyrights in columns (80 columns suggested in Coding Standard Directives)."
+				},
+				"versionBoss.settings.copyrights.copyrightsHeader": {
+					"type": "string",
+					"default": "Copyrigths ©",
+					"markdownDescription": "Header of Copyrights box."
+				},
+				"versionBoss.settings.copyrights.fileAndLicensesInfosHeader": {
+					"type": "string",
+					"default": "File and License Informations",
+					"markdownDescription": "Header of File and Licenses Informations box."
+				},
+				"versionBoss.settings.copyrights.setLicensesPatternUrl": {
+					"type": "string",
+					"default": "https://spdx.org/licenses/{LICENSE_ID}.html",
+					"pattern": "^(((ht|f)tps?\\://(www(\\d*)\\.|))([a-z0-9\\_\\-\\.]+)\\.([a-z0-9]{2,64})(|(([^ ]*))((\\/|)(\\?([^\\? ]*)|))))+$|^$",
+					"markdownDescription": "This is the path to the site or file where you can store information about the license of your script.\r\n\r\nBy default, it use [SPDX site](https://spdx.org/licenses/)  data and the special keyword *`{LICENSE_ID}`* thath will be dinamically converted with license-id you choosed in url of ***SPDX***. For this, you have to insert in *Settings » Copyrights » Set Licences List* the exact IDs found at [SPDX Site](https://spdx.org/licenses/) in 2nd column (named *Identifier*), e.g. `LGPL-3.0-or-later` will produce the following url `https://spdx.org/licenses/LGPL-3.0-or-later.html`. Url can be customized (e.g. `https://example.com/get_lic.php?somevar=someval&mylicense={LICENSE_ID}`)."
+				},
+				"versionBoss.settings.copyrights.setLicensesList": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"default": [
+						"BSD-3-Clause-Attribution",
+						"BSD-3-Clause,BSD-2-Clause",
+						"GPL-3.0-or-later",
+						"LGPL-3.0-or-later",
+						"MIT",
+						"MPL-2.0",
+						"CDDL-1.1",
+						"EPL-2.0",
+						"Apache-2.0",
+						"Copyrighted Commercial Software|http://wwww.example.com/licenses/?&lic={LICENSE_ID}",
+						"Free Software for Private and Commercial use|See License.txt",
+						"Free Software for Private use|See License-{LICENSE_ID}.txt"
+					],
+					"markdownDescription": "Licenses in which, generally, you want to distribute your software (ono license per row and use structure `LICENSE_NAME_OR_ID` | `LICENSE_URL` | `LICENSE_CLARIFICATION` using pipe `|` to split each part of license string). Fisrt Value is default.\r\n\r\n1. `LICENSE_NAME_OR_ID` : use id from [SPDX site](https://spdx.org/licenses/) or your personal id or name (name will be converted in ID-like);\r\n\r\n2. `LICENSE_URL`: url of your license. If empty, value in *Set Licenses Pattern Url* will be used;\r\n\r\n3. `LICENSE_CLARIFICATION`: Short clarification about licenses. If empty, value in *Set Licenses Default Clarification* will be used.\r\n\r\n*To get Licenses IDs*: go to [SPDX Site](https://spdx.org/licenses/), get strings (even more than one) from 2nd column (named *Identifier*) and enter it in this field (separated by comma `,`)."
+				},
+				"versionBoss.settings.copyrights.setLicensesDefaultClarification": {
+					"type": "string",
+					"default": "This file may not be redistributed in whole or significant part.",
+					"markdownDescription": "Licenses clarification about use of file and its contents. This is default clarification. To set clarification for each license, please use *Set Licenses List*."
+				},
+				"versionBoss.settings.copyrights.insertFileBasename": {
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "Insert current file basename."
+				},
+				"versionBoss.settings.copyrights.insertFileBirthDateAndTime": {
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "Insert current file birth date."
+				},
+				"versionBoss.settings.copyrights.copyrightsOwner": {
+					"type": "string",
+					"enum": [
+						"0 - Main Author",
+						"1 - Company",
+						"2 - Main Author & Company",
+						"3 - Company & Main Author",
+						"4 - All Authors",
+						"5 - All Authors & Company",
+						"6 - Company & All Authors"
+					],
+					"markdownDescription": "Owner of File / Code."
+				},
+				"versionBoss.settings.copyrights.labelAndValueSeparatorChars": {
+					"type": "string",
+					"default": ">",
+					"minLength": 0,
+					"maxLength": 4,
+					"markdownDescription": "Separator betwen Labels and Values of Copyrights data."
+				},
+				"versionBoss.settings.copyrights.topAndBottomFrameChars": {
+					"type": "string",
+					"default": "*",
+					"minLength": 1,
+					"maxLength": 4,
+					"markdownDescription": "Copyrights Frame chars.\r\nAt least one char."
+				},
+				"versionBoss.settings.copyrights.leftAndRightFrameChars": {
+					"type": "string",
+					"default": "*",
+					"minLength": 0,
+					"maxLength": 4,
+					"markdownDescription": "Copyrights Frame chars.\r\nLeave empty to use char `space` and make a very basic copyrights frame.\r\nNote: the first char of `Top And Bottom Frame Chars` is used as left character to prevent format of comment block by the editor."
+				},
+				"versionBoss.settings.copyrights.fillChars": {
+					"type": "string",
+					"default": "",
+					"minLength": 0,
+					"maxLength": 4,
+					"markdownDescription": "Copyrights empty spaces Fill char.\r\nLeave empty to use char `space`."
+				},
+				"versionBoss.settings.copyrights.sectionSeparatorChars": {
+					"type": "string",
+					"default": "-",
+					"minLength": 1,
+					"maxLength": 4,
+					"markdownDescription": "Separator betwen Headers and data of Copyrights information."
+				},
+				"versionBoss.copyrights.authorsNamesAndEmails": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"pattern": "([^\\r\\n]+)((\\s*)\\;(\\s*)(([a-z0-9\\_\\-\\.]+)\\@([a-z0-9\\_\\-\\.]+)\\.([a-z0-9]{2,64}))|[\\-]{1})"
+					},
+					"default": [
+						"Wyle Coyote, wyle.coyote@example.com"
+					],
+					"markdownDescription": "Authors names and e-mails (name separated by semicolon `;`  from email (e.g. `Wyle Coyote`;` wyle.coyote@example.com`).\r\n\r\nIf no e-mail is present, use `-`, after semicolon `;` (e.g.: `Wyle Coyote;-`).\r\n\r\nMultiple e-mail addresses separated by a comma `;` are allowed.\r\n\r\nMultiple data are allowed: one address per line.\r\n\r\nFirst value is the `Main Author`.\r\n\r\nLeave empty for none.\r\n\r\n> Tip: iIn Copyrights Infos Array is possible to obtain Main Author Name and its E-Mail address in two separate fields."
+				},
+				"versionBoss.copyrights.authorsWebsites": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"pattern": "^(((ht|f)tps?\\://(www(\\d*)\\.|))([a-z0-9\\_\\-\\.]+)\\.([a-z0-9]{2,64})(|(([^ ]*))(\\/|)(\\?([^\\? ]*)|))(,(\\s*)|$))+$|^$"
+					},
+					"default": [
+						"http://www.example.com",
+						"http://wwww.test.com"
+					],
+					"markdownDescription": "Your websites address (Labels separated by `:` from data and multiple data separated by comma `,`).\r\ne.g.: If you use short url -> Facebook: `https://bit.ly/18AOiDE`."
+				},
+				"versionBoss.copyrights.authorsSocials": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"pattern": "^(((ht|f)tps?\\://(www(\\d*)\\.|))([a-z0-9\\_\\-\\.]+)\\.([a-z0-9]{2,64})(|(([^ ]*))(\\/|)(\\?([^\\? ]*)|))(,(\\s*)|$))+$|^$"
+					},
+					"default": [
+						"https://www.facebook.com/",
+						"https://www.twitter.com/"
+					],
+					"markdownDescription": "Company Social Networks .\r\nMultiple data are allowed: one address per line.\r\nLeave empty for none."
+				},
+				"versionBoss.copyrights.companyName": {
+					"type": "string",
+					"default": "A.C.M.E.",
+					"markdownDescription": "Company name.\r\nLeave empty for none."
+				},
+				"versionBoss.copyrights.companyEmail": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"pattern": "^(([a-z0-9\\_\\-\\.]+)\\@([a-z0-9\\_\\-\\.]+)\\.([a-z0-9]{2,64})(,(\\s*)|$))+$|^$"
+					},
+					"default": [
+						"acme@example.com"
+					],
+					"markdownDescription": "Company E-Mail address.\r\nMultiple data are allowed: one item per line.\r\nLeave empty for none."
+				},
+				"versionBoss.copyrights.companyWebsites": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"pattern": "^(((ht|f)tps?\\://(www(\\d*)\\.|))([a-z0-9\\_\\-\\.]+)\\.([a-z0-9]{2,64})(|(([^ ]*))(\\/|)(\\?([^\\? ]*)|))(,(\\s*)|$))+$|^$"
+					},
+					"default": [
+						"http://www.example.com"
+					],
+					"markdownDescription": "Company websites address.\r\nMultiple data are allowed: one item per line.\r\nLeave empty for none."
+				},
+				"versionBoss.copyrights.companySocials": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"pattern": "^(((ht|f)tps?\\://(www(\\d*)\\.|))([a-z0-9\\_\\-\\.]+)\\.([a-z0-9]{2,64})(|(([^ ]*))(\\/|)(\\?([^\\? ]*)|))(,(\\s*)|$))+$|^$"
+					},
+					"default": [
+						"https://www.facebook.com/",
+						"https://www.twitter.com/"
+					],
+					"markdownDescription": "Company Social Networks .\r\nMultiple data are allowed: one item per line.\r\nLeave empty for none."
+				},
+				"versionBoss.copyrights.credits": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"default": [
+						""
+					],
+					"markdownDescription": "Other people who constantly contribute to perfecting your code.\r\nMultiple data are allowed: one item per line.\r\nLeave empty for none or `-`  to leave a label and space for manual editing."
+				},
+				"versionBoss.copyrights.otherInfos": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"default": [
+						""
+					],
+					"markdownDescription": "Other generic infos.\r\nMultiple data are allowed: one item per line.\r\nLeave empty for none or `-` to leave a label and space for manual editing."
+				},
+				"versionBoss.copyrights.notes": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"default": [
+						""
+					],
+					"markdownDescription": "Author Notes.\r\nMultiple data are allowed: one item per line.\r\nLeave empty for none or `-` to leave a label and space for manual editing."
+				}
+			}
+		}
+	},
+	"scripts": {
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"@types/mocha": "^7.0.2",
+		"@types/node": "^13.13.52",
+		"@types/xregexp": "^4.4.0",
+		"eslint": "^6.8.0",
+		"minimist": "^1.2.5",
+		"typescript": "^3.9.9",
+		"vscode": "^1.1.37",
+		"xregexp": "^4.4.1"
+	},
+	"dependencies": {
+		"mkdirp": "^1.0.4",
+		"mocha": "^7.2.0"
+	}
 }

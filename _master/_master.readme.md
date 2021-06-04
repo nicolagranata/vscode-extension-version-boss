@@ -1,21 +1,20 @@
 {badges}
 
+{toc}
+
 # {app_name} - v. {app_version}
 
 {app_description}
 
-## Release Notes for version {app_version}
+## Very Important Informations for **Upgrade**
 
-> {development_sections_warning}
+### Upgrade to **V. 1.4.0** and above: **PLEASE UPDATE YOUR SETTINGS**
+1. **Copyrights: Authors Names and Emails**: from version `1.4.0`,  thanks to the new contribution point `type=array`, *Copyrights: Authors Names* field and *Copyrights: Authors Emails* field in **Settings** are merged in `Copyrights: Authors And Emails`. See **Settings**  in-line help for more details.
+1. **Copyrights: Licenses**: from version `1.4.0`, thanks to the new contribution point `"type"="array"`, the license string has <b>been</b> divided into an array for easy management of the licenses themselves. If you have customized these settings, remove them from `settings.json` and update them from **Settings** panel. I have tried to keep backwards compatibility, but I'm not sure it works.
 
-{whats_new}
-
-See `Changelog` for previous versions.
-
-### Very Important Informations for Upgrade to `{app_name} v. 1.2.0` and above
-
-1. **`PLEASE UPDATE BOUNDARIES STRUCTURE IN YOUR SCRIPTS`**: from version `1.2.0` was changed structure of boundaries from `<!#(.+)#!>` to `<!#(.+)>` and `</#(.+)#/>` to `</#(.+)>` (e.g.: `<!#FV#!>1.2.3456-beta.3</#FV#/>` to `<!#FV>1.2.3456-beta.3</#FV>`. Even all others boundaries are changed in this pattern!);
-1. **`PLEASE UPDATE YOUR SETTINGS`**: from version `1.2.0` was removed `Version Update On Pattern Match Only First` and  changed rule of `Version Update On Pattern Match` from `false` / `true` to `False` / `True` / `Only First Occurrence` (default: `False`);
+### Upgrade to **V. 1.2.0** and above: **PLEASE UPDATE YOUR SETTINGS**
+1. **Boundary structures in your scripts**: from version `1.2.0` was changed structure of boundaries from `<!#(.+)#!>` to `<!#(.+)>` and `</#(.+)#/>` to `</#(.+)>` (e.g.: `<!#FV#!>1.2.3456-beta.3</#FV#/>` to `<!#FV>1.2.3456-beta.3</#FV>`. Even all others boundaries are changed in this pattern!);
+1. **Settings**: from version `1.2.0` was removed `Version Update On Pattern Match Only First` and  changed rule of `Version Update On Pattern Match` from `false` / `true` to `False` / `True` / `Only First Occurrence` (default: `False`);
 
 ---
 
@@ -26,23 +25,52 @@ See `Changelog` for previous versions.
 > Tip: I suggest you also use one of my [VSCode Themes](https://marketplace.visualstudio.com/search?term=publisher%3A%22Nicola%20Granata%22&target=VSCode&category=Themes&sortBy=Name)!
 
 **{app_name}**, using shortcuts, can:
-- Insert and Update (step-up and step-down) File Version;
-- Insert Copyrights infos in multiline comments(1)  and other infos about Licensing and file stats;
-- Insert Copyrights infos in JavaScript Object or PHP Associative Array and in JSON stringified object for all other languages;
-- Easily switch between Licenses (and customize it in Settings);
+- Insert and Update (step-up and step-down) **File Version** and **Function / Class Version**;
+- Insert **Todo+ Keywords** in docblock for [Todo+ by Fabio Spampinato](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-todo-plus) (from **{app_name}** v. 1.4.0)
+- Insert **PHP PHPDoc** / **JavaScript JSDoc** / **TypeScript TypeDoc** docblocks (from **{app_name}** v. 1.4.0)
+- Insert **Copyrights** infos in multiline comments(1), `Licensing` and file stats as `file name`, `file creation` and `file modification` time;
+- Insert **Copyrights** infos in **JavaScript Object** or **PHP Associative Array** and in **JSON stringified object** for all other languages;
+- Easily switch between **Licenses** (and customize them in **Settings**);
 
-- `Warning`: **{app_name}** was tested with `JavaScript` and `PHP` files but will be work on most of scripting languages: In *future versions*, I will try to refine the output for the various programming languages.
+
+> Tip: **Warning**: **{app_name}** was tested with **JavaScript** and **PHP** files but will be work on most of scripting languages: In *future versions*, I will try to refine the output for the various programming languages.
+
+---
+## Release Notes for version {app_version}
+
+> {development_sections_warning}
+
+{whats_new}
+
+See `Changelog` for previous versions.
 
 ---
 
-## **{app_name}** Demo
+# **{app_name}** Demo
 
+## Version Boss - for versioning files, classes and functions
 ![{app_name} Demo](./_gfx/version-boss-demo-00.gif)
+
+## MonsterDoc - PHPDoc / JSDoc / TypeDoc dockblock generator and Todo+ labeling
+
+### Insert **Todo+** quick labels
+Quick labels are first two keywords in `Monsterdoc Todo Plus Dockblock Keywords` settings.
+1. position the cursor in an empty row and press the shortcut `CTRL+ALT+SHIFT+D` or `CTRL+ALT+SHIFT+F` (alternative mode) to create an empty dockbloc
+1. press `CTRL+ALT+SHIFT+D` again  to add first keyword (default: `todo`) or `CTRL+ALT+SHIFT+F` to add second keyword (default: `fixme`);
+1. just press `CTRL+ALT+SHIFT+D` or `CTRL+ALT+SHIFT+F` repeatedly, scroll between the two keywords (replaces the keyword without clear following text).
+
+	[-- Monsterdoc demo here --]
+	[-- Monsterdoc demo here --]
+	[-- Monsterdoc demo here --]
+
+### Choose labels from Completion Items Dropdown Menu
+
+### See PHPDoc / JSDoc / TypeDoc online help and documentation
 
 ## Some recommendations before start using *{app_name}*
 
-The extension is almost entirely customizable (`1`), at least until sufficient feedback is available to eliminate unnecessary customizables settings. 
-It is good to leave the default settings, except for that which may cause conflicts with your code, and customize only: 
+The extension is almost entirely customizable (`1`), at least until sufficient feedback is available to eliminate unnecessary customizables settings.
+It is good to leave the default settings, except for that which may cause conflicts with your code, and customize only:
 
 - Try one of my [VSCode Themes](https://marketplace.visualstudio.com/search?term=publisher%3A%22Nicola%20Granata%22&target=VSCode&category=Themes&sortBy=Name)!
 - {app_name} »  Copyrights » *[all settings for this group]*.
@@ -61,7 +89,7 @@ Notes:
 
 1. Better to prepare all the options before an active development, to be aware of possible conflicts.
 
-2. *Semver Update On Pattern Match* can recognize any pattern similar to "`Major.Minor.Patch[-Channel[.ChannelVersion]]`" (eg: `1.2.3456-beta.3`) enclosed in pair double-quote `"` or pair single-quote `'` (without spaces in between). 
+2. *Semver Update On Pattern Match* can recognize any pattern similar to "`Major.Minor.Patch[-Channel[.ChannelVersion]]`" (eg: `1.2.3456-beta.3`) enclosed in pair double-quote `"` or pair single-quote `'` (without spaces in between).
 If you plan to use similar pattern in portion of your code, this may be in conflict with **{app_name}** pattern recognition. In this case you can (one of them):
 	1. ~~limit step only to first occurence (*Settings » Semver » Update On Pattern Match Only First*: `true`)~~ limit step only to first occurence (*Settings » Semver » Update On Pattern Match*: `Only First Occurrency`);
 	2. in your string  add `#` or `any non digit char` as first char (eg: `1.2.3456-beta.3` -> `#1.2.3456-beta.3`, useful if you maintain track of features/bug fixes in comments to code);
@@ -89,10 +117,10 @@ I wrote the first draft for *Eclipse Monkey*, to help me manage the versioning o
 After updates to Eclipse, Monkey was no longer supported and was replaced by EASE. I used old versions of Eclipse for quite some time, so as not to abandon the convenience of automatic versioning.
 Although I had subsequently started writing the code for EASE, I feared that what happened with Monkey would happen again and, consequently, I decided to do without the automatic versioning for a while (it was driving me crazy) until I have decided to abandon the slowness of Eclipse in favor of VSCode.
 
-### Off-standard functions
+## Off-standard functions
 
-The first scripts for Monkey did not use the SemVer directives, simply because I used versioning for internal reference, so I implemented the Minor Version increase on passing the Patch Version `99`, and the Major Version on passing the Minor Version `99`. 
-It was not implemented not even the use of the channel. Since, personally, I found this method comfortable, although not correct, I decided to add the possibility to choose whether or not to use the step-up of the echelon after reaching threshold(`1`) for the current echelon (e.g. limit:`1000` -> from `Patch 999` to `Patch 1000` step-up Minor Version of `+1` and set Patch version to `0`) and to be `able to set the limit to be reached before carrying out the progress of the next echelon` for `each echelon` (eg. limit for Minor Version before step-up Major Version set to `100`, and limit for Patch Version to step-up `+1` Minor Version set to `1000`). 
+The first scripts for Monkey did not use the SemVer directives, simply because I used versioning for internal reference, so I implemented the Minor Version increase on passing the Patch Version `99`, and the Major Version on passing the Minor Version `99`.
+It was not implemented not even the use of the channel. Since, personally, I found this method comfortable, although not correct, I decided to add the possibility to choose whether or not to use the step-up of the echelon after reaching threshold(`1`) for the current echelon (e.g. limit:`1000` -> from `Patch 999` to `Patch 1000` step-up Minor Version of `+1` and set Patch version to `0`) and to be `able to set the limit to be reached before carrying out the progress of the next echelon` for `each echelon` (eg. limit for Minor Version before step-up Major Version set to `100`, and limit for Patch Version to step-up `+1` Minor Version set to `1000`).
 The use of this function is strongly discouraged after the release of the first public version of ypur app, but as long as you manage your scripts yourself, I don't think anyone can hurt you. Other non-standard functions are the `step-downs` for each echelon.
 
 ---

@@ -1,6 +1,12 @@
 .vscode/**
 .vscode-test/**
 .history/**
+_master/
+_master/**
+_test/**
+_test/
+_autobackup/
+_autobackup/**
 test/**
 .gitignore
 vsc-extension-quickstart.md
