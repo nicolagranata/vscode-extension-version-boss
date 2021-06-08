@@ -1,5 +1,5 @@
 <!-- RICORDATI: QUESTO FILE E' ASSEMBLATO DAL TUO SCRIPT - NON MODIFICARLO DA QUI -->
-<!-- 2020/09/03 16:05:41.938 -->
+<!-- 2021/06/08 21:49:51.013 -->
 
 [![Version](https://vsmarketplacebadge.apphb.com/version-short/nicola-granata.version-boss.svg?style=for-the-badge&colorA=FCAA33&colorB=3399CC)](https://vsmarketplacebadge.apphb.com/version-short/nicola-granata.version-boss.svg?style=for-the-badge&colorA=FCAA33&colorB=3399CC)
 [![Downloads](https://vsmarketplacebadge.apphb.com/downloads-short/nicola-granata.version-boss.svg?style=for-the-badge&colorA=66BB33&colorB=AA66FC)](https://vsmarketplacebadge.apphb.com/downloads-short/nicola-granata.version-boss.svg?style=for-the-badge&colorA=66BB33&colorB=AA66FC)
@@ -8,12 +8,12 @@
 
 
 # Table of contents
-1.	[Version Boss & MonsterDoc - v. 1.4.64](#version-boss--monsterdoc---v-1464)<hr style="height:1px;border-width:0px;border-top-width:1px; border-top-style:dotted; position:relative;">
+1.	[Version Boss & MonsterDoc - v. 1.4.67](#version-boss--monsterdoc---v-1467)<hr style="height:1px;border-width:0px;border-top-width:1px; border-top-style:dotted; position:relative;">
 	1.	[Very Important Informations for **Upgrade**](#very-important-informations-for-upgrade)
 		-	[Upgrade to **V. 1.4.0** and above: **PLEASE UPDATE YOUR SETTINGS**](#upgrade-to-v-140-and-above-please-update-your-settings)
 		-	[Upgrade to **V. 1.2.0** and above: **PLEASE UPDATE YOUR SETTINGS**](#upgrade-to-v-120-and-above-please-update-your-settings)
 	1.	[Features](#features)
-	1.	[Release Notes for version 1.4.64](#release-notes-for-version-1464)
+	1.	[Release Notes for version 1.4.67](#release-notes-for-version-1467)
 1.	[**Version Boss & MonsterDoc** Demo](#version-boss--monsterdoc-demo)<hr style="height:1px;border-width:0px;border-top-width:1px; border-top-style:dotted; position:relative;">
 	1.	[Version Boss - for versioning files, classes and functions](#version-boss---for-versioning-files-classes-and-functions)
 	1.	[MonsterDoc - PHPDoc / JSDoc / TypeDoc dockblock generator and Todo+ labeling](#monsterdoc---phpdoc-/-jsdoc-/-typedoc-dockblock-generator-and-todo-labeling)
@@ -31,7 +31,7 @@
 
 <a href="#table-of-contents" name="toc" style="float:right;z-index:1000;position:relative;" >&#128316;</a>
 
-# Version Boss & MonsterDoc - v. 1.4.64
+# Version Boss & MonsterDoc - v. 1.4.67
 
 Versioning and Documenting like a Boss - Semantic Versioner and PHPDoc / JSDoc / TypeDoc Document Blocks Generator and  [Todo+  by Fabio Spampinato](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-todo-plus) Keywords for Scripting Languages: insert and update Version of file and of classes and functions (according to http://semver.org directives), insert Copyrights, Distribution License and generate Documentation for PHP / JavaScript and TypeScript Languages and add Todo+ Keywords using shortcuts.
 
@@ -75,10 +75,11 @@ Versioning and Documenting like a Boss - Semantic Versioner and PHPDoc / JSDoc /
 ---
 <a href="#table-of-contents" name="toc" style="float:right;z-index:1000;position:relative;" >&#128316;</a>
 
-## Release Notes for version 1.4.64
+## Release Notes for version 1.4.67
 
 > Note: [`Development`] sections in *Changelog* are addressed to the developer to remind him of any important changes that occurred during the writing of the code and do not always concern improvements made to the extension or to the theme.
 
+- [`Fix`] Fix for some JavaScript declarations.
 - [`Feature`] Added some options to optimize informations in Copyrigths Infos Array: now is possible to insert Main Author and its E-mail address in two seprate fields, is possible to add fileVersion and appName (see Settings of Version Boss & MonsterDoc), output of `Authors Names and E-mails` item is now an array;
 - [`Settings`] **WARNING!** Changed some **Settings**: now several fields are an array of strings instead a complex string: **you must comment all `Version Boss & MonsterDoc` variables in `settings.ini` and set them from Settings Panel.**;
 - [`Development`] Error Messages can be displayed in UI language of VScode (at this moment only `english` and `italian`).
@@ -710,7 +711,7 @@ Leave empty to use char `space`.
 > `versionBoss.settings.copyrights.sectionSeparatorChars` [type: `string`] 
 ---
 ##### Version Boss »  Copyrights »  Authors Names And Emails
-* Authors names and e-mails (name separated by semicolon `;`  from email (e.g. `Wyle Coyote, wyle.coyote@example.com`).
+* Authors names and e-mails (name separated by semicolon `;`  from email (e.g. `Wyle Coyote`;` wyle.coyote@example.com`).
 
 If no e-mail is present, use `-`, after semicolon `;` (e.g.: `Wyle Coyote;-`).
 

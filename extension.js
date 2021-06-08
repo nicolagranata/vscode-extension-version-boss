@@ -12,11 +12,11 @@
 * -------------------------------------------------------------------------------------------------------------------- *
 *      File Name                > <!#FN> extension.js </#FN>
 *      File Birth               > <!#FB> 2019/12/07 16:34:01.956 </#FB>                                                *
-*      File Mod                 > <!#FT> 2021/06/03 14:14:07.589 </#FT>                                                *
+* File Mod > < !#FT > 2021 / 06 / 08 20: 41: 25.554 < /#FT>                                                *
 *      License                  > <!#LT> BSD-3-Clause-Attribution </#LT>
 *                                 <!#LU> https://spdx.org/licenses/BSD-3-Clause-Attribution.html </#LU>
 *                                 <!#LD> This file may not be redistributed in whole or significant part. </#LD>
-*      File Version             > <!#FV> 1.4.66 </#FV>
+* File Version > < !#FV > 1.4 .67 < /#FV>
 *                                                                                                                      *
 ******************************************* VSCode Extension: Version Boss *********************************************
 </#CR>
@@ -35,7 +35,7 @@ var vscode = require('vscode');
 var fs = require('fs');
 // var XRegExp = "";
 var glob_env = {
-	"version": "<!#FV> 1.4.66 </#FV>",
+	"version": "<!#FV> 1.4.67 </#FV>",
 	"table_of_contents_title": "Table of contents",
 	"table_of_contents_goto_symbol": "&#128316;",
 	"lang": vscode.env.language,
@@ -146,7 +146,9 @@ var monsterdoc_keywords_main_obj = {
 			"@license": {
 				"is_predefined_keyword": true
 			},
-			"@link": "",
+			"@link": {
+				"is_predefined_keyword": true
+			},
 			"@method": "",
 			"@name": "",
 			"@package": "",
@@ -233,6 +235,9 @@ var monsterdoc_keywords_main_obj = {
 			"@lends": "",
 			"@license": "",
 			"@listens": "",
+			"@link": {
+				"is_predefined_keyword": true
+			},
 			"@member": "",
 			"@memberof": "",
 			"@mixes": "",
@@ -1028,7 +1033,7 @@ function vboss_get_filename() {
 	//var filename_ext = String( filename_full_path.split( "." ).pop() ).toLowerCase();
 	var filename_ext = "";
 	if (filename_full_path.lastIndexOf(".") != -1) {
-		filename_ext = String(filename_full_path.substring(filename_full_path.lastIndexOf(".") + 1, )).toLowerCase();
+		filename_ext = String(filename_full_path.substring(filename_full_path.lastIndexOf(".") + 1, filename_full_path.length)).toLowerCase();
 	}
 	var obj = {
 		"filename_basename": filename_basename,
@@ -2327,7 +2332,7 @@ function monsterdoc_function_arguments_parser(monsterdoc_keywords_obj, monsterdo
 		if (args_tab_match != null) {
 			args_tab = args_tab_match[0];
 		}
-		function_arguments_orig = args_tab + function_arguments_orig.trimStart().substring(variables_boundary_str.length, );
+		function_arguments_orig = args_tab + function_arguments_orig.trimStart().substring(variables_boundary_str.length, function_arguments_orig.length);
 
 	}
 	//console.log( function_arguments_orig );
@@ -2634,12 +2639,12 @@ function monsterdoc_function_arguments_parser(monsterdoc_keywords_obj, monsterdo
 		if (is_PHP) {
 			re_obj = Object.assign({},
 				re_obj_common,
-				re_obj_PHP,
+				re_obj_PHP
 			);
 		} else {
 			re_obj = Object.assign({},
 				re_obj_common,
-				re_obj_TS,
+				re_obj_TS
 			);
 		}
 		if (is_valid_function_or_class_selection) {
@@ -2827,7 +2832,7 @@ function monsterdoc_maker(editor, selection, settings_obj, root_item, semver_bos
 					}
 
 					// console.log( "A-2" );
-					monsterdoc_str += comment_match[0].trimEnd() + " " + preset_keyword + "\t" + line_text_trimmed.substr(line_text_trimmed.indexOf(comment_match[0]) + comment_match[0].length, );
+					monsterdoc_str += comment_match[0].trimEnd() + " " + preset_keyword + "\t" + line_text_trimmed.substr(line_text_trimmed.indexOf(comment_match[0]) + comment_match[0].length, line_text_trimmed.length);
 					// console.log(   );
 				}
 			}
@@ -3104,7 +3109,7 @@ function monsterdoc_maker(editor, selection, settings_obj, root_item, semver_bos
 					function_name = function_name.substring(0, fn_limit).trim();
 					// console.log( "PRIMA: " + function_name );
 					if (function_name.indexOf(" ") > 0) {
-						function_name = function_name.substring(function_name.indexOf(" ") + 1, );
+						function_name = function_name.substring(function_name.indexOf(" ") + 1, function_name.length);
 						// console.log( "SONO QUI: 5" )
 					}
 					function_name = function_name.trim();
@@ -3116,7 +3121,7 @@ function monsterdoc_maker(editor, selection, settings_obj, root_item, semver_bos
 					var function_return = "";
 					var function_end_declaration_match_str = String(function_end_declaration_match[0]);
 					if (function_end_declaration_match_str.indexOf(":") >= 0) {
-						var function_return_tmp = function_end_declaration_match_str.substring(function_end_declaration_match_str.indexOf(":") + 1, ).trim();
+						var function_return_tmp = function_end_declaration_match_str.substring(function_end_declaration_match_str.indexOf(":") + 1, function_end_declaration_match_str.length).trim();
 						var function_return_match = function_return_tmp.match(new RegExp("([a-z0-9\\\_\\\-\\\.]*)", "gim"));
 						function_return = function_return_match[0];
 					}
@@ -3147,7 +3152,7 @@ function monsterdoc_maker(editor, selection, settings_obj, root_item, semver_bos
 					}
 
 
-					class_name = class_name.substring(class_name.indexOf(curr_structure_type) + curr_structure_type.length, ).trim();
+					class_name = class_name.substring(class_name.indexOf(curr_structure_type) + curr_structure_type.length, class_name.length).trim();
 					if (class_name.indexOf(" ") > 0) {
 						class_name = class_name.substring(0, class_name.indexOf(" "));
 					}
@@ -3174,7 +3179,7 @@ function monsterdoc_maker(editor, selection, settings_obj, root_item, semver_bos
 						var monsterdoc_keywords_to_add_i = "";
 						for (var i in monsterdoc_keywords_to_add) {
 							monsterdoc_keywords_to_add_i = monsterdoc_keywords_to_add[i];
-							documentation_obj["additional_keywords"] += add_tab + pre_tabs + start_row + monsterdoc_keywords_obj[monsterdoc_keywords_to_add_i] + "_" + monsterdoc_keywords_to_add_i.substr(1, ) + description_ph + eol;
+							documentation_obj["additional_keywords"] += add_tab + pre_tabs + start_row + monsterdoc_keywords_obj[monsterdoc_keywords_to_add_i] + "_" + monsterdoc_keywords_to_add_i.substr(1, monsterdoc_keywords_to_add_i.length) + description_ph + eol;
 						}
 					}
 				}
@@ -3232,7 +3237,7 @@ function monsterdoc_maker(editor, selection, settings_obj, root_item, semver_bos
 				if (!is_PHP) {
 					documentation_str += monsterdoc_keywords_obj["@description"];
 				} else {
-					documentation_str += monsterdoc_keywords_obj["@description"].substring(1, 2).toUpperCase() + monsterdoc_keywords_obj["@description"].substring(2, ) + " ";
+					documentation_str += monsterdoc_keywords_obj["@description"].substring(1, 2).toUpperCase() + monsterdoc_keywords_obj["@description"].substring(2, monsterdoc_keywords_obj["@description"].length) + " ";
 				}
 				documentation_str += curr_structure_name;
 				if (is_function) {
@@ -3850,13 +3855,8 @@ function activate(context) {
 	eval(str);
 	context.subscriptions.push(disp_ra, docblock_completion_provider);
 }
-exports.activate = activate;
-
 function deactivate() {}
-exports.deactivate = deactivate;
-
-
 module.exports = {
 	activate,
-	deactivate
+	deactivate,
 };

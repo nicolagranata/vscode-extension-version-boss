@@ -4,6 +4,7 @@
 
 ## [{app_version}]
 
+- [`Fix`] Fix for some JavaScript declarations.
 - [`Feature`] Added some options to optimize informations in Copyrigths Infos Array: now is possible to insert Main Author and its E-mail address in two seprate fields, is possible to add fileVersion and appName (see Settings of {app_name}), output of `Authors Names and E-mails` item is now an array;
 - [`Settings`] **WARNING!** Changed some **Settings**: now several fields are an array of strings instead a complex string: **you must comment all `{app_name}` variables in `settings.ini` and set them from Settings Panel.**;
 - [`Development`] Error Messages can be displayed in UI language of VScode (at this moment only `english` and `italian`).
@@ -12,6 +13,7 @@
 - [`Development`] Now `version` keys in  `package.json` and `package-lock.json` are automatically aligned to the internal version;
 - [`Development`] Now `README.md` and `CHANGELOG.md` are generated at activation of extension only when in `Debug Mode`, after pressing the first time any shortcut or launch any command;
 - [`Feature`] Added PHPDoc / JSDoc / TypeDoc and [Todo+ by Fabio Spampinato](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-todo-plus) Comments Generator.
+
 
 ## [1.3.13]
 - [`Fix`] Updated dependencies (arp) for security reasons.

@@ -1,12 +1,13 @@
 <!-- RICORDATI: QUESTO FILE E' ASSEMBLATO DAL TUO SCRIPT - NON MODIFICARLO DA QUI -->
-<!-- 2020/09/03 16:05:41.938 -->
+<!-- 2021/06/08 21:49:51.013 -->
 
 # Version Boss & MonsterDoc Change Log
 
 > Note: [`Development`] sections in *Changelog* are addressed to the developer to remind him of any important changes that occurred during the writing of the code and do not always concern improvements made to the extension or to the theme.
 
-## [1.4.64]
+## [1.4.67]
 
+- [`Fix`] Fix for some JavaScript declarations.
 - [`Feature`] Added some options to optimize informations in Copyrigths Infos Array: now is possible to insert Main Author and its E-mail address in two seprate fields, is possible to add fileVersion and appName (see Settings of Version Boss & MonsterDoc), output of `Authors Names and E-mails` item is now an array;
 - [`Settings`] **WARNING!** Changed some **Settings**: now several fields are an array of strings instead a complex string: **you must comment all `Version Boss & MonsterDoc` variables in `settings.ini` and set them from Settings Panel.**;
 - [`Development`] Error Messages can be displayed in UI language of VScode (at this moment only `english` and `italian`).
@@ -15,6 +16,7 @@
 - [`Development`] Now `version` keys in  `package.json` and `package-lock.json` are automatically aligned to the internal version;
 - [`Development`] Now `README.md` and `CHANGELOG.md` are generated at activation of extension only when in `Debug Mode`, after pressing the first time any shortcut or launch any command;
 - [`Feature`] Added PHPDoc / JSDoc / TypeDoc and [Todo+ by Fabio Spampinato](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-todo-plus) Comments Generator.
+
 
 ## [1.3.13]
 - [`Fix`] Updated dependencies (arp) for security reasons.

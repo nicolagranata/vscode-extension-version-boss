@@ -3,7 +3,7 @@
 	"displayName": "Version Boss & MonsterDoc",
 	"icon": "_gfx/version-boss-icon.png",
 	"description": "Versioning and Documenting like a Boss - Semantic Versioner and PHPDoc / JSDoc / TypeDoc Document Blocks Generator and  [Todo+  by Fabio Spampinato](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-todo-plus) Keywords for Scripting Languages: insert and update Version of file and of classes and functions (according to http://semver.org directives), insert Copyrights, Distribution License and generate Documentation for PHP / JavaScript and TypeScript Languages and add Todo+ Keywords using shortcuts.",
-	"version": "1.4.64",
+	"version": "1.4.67",
 	"publisher": "nicola-granata",
 	"license": "BSD-3-Clause-Attribution",
 	"author": {
@@ -34,7 +34,7 @@
 		"minimist": "^1.2.5"
 	},
 	"engines": {
-		"vscode": "^1.42.0"
+		"vscode": "^1.56.0"
 	},
 	"categories": [
 		"Other"
@@ -1138,17 +1138,17 @@
 		"test": "node ./node_modules/vscode/bin/test"
 	},
 	"devDependencies": {
-		"@types/mocha": "^7.0.2",
-		"@types/node": "^13.13.52",
+		"@types/mocha": "^8.2.2",
+		"@types/node": "^15.12.2",
 		"@types/xregexp": "^4.4.0",
-		"eslint": "^6.8.0",
+		"eslint": "^7.28.0",
 		"minimist": "^1.2.5",
-		"typescript": "^3.9.9",
+		"typescript": "^4.3.2",
 		"vscode": "^1.1.37",
-		"xregexp": "^4.4.1"
+		"xregexp": "^5.0.2"
 	},
 	"dependencies": {
 		"mkdirp": "^1.0.4",
-		"mocha": "^7.2.0"
+		"mocha": "^9.0.0"
 	}
 }
